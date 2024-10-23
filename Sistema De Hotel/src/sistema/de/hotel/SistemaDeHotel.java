@@ -4,17 +4,11 @@
  */
 package sistema.de.hotel;
 
-/**
- *
- * @author harol
- */
 public class SistemaDeHotel {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
-        // TODO code application logic here
+       
     }
     
 }
