@@ -6,7 +6,7 @@ package sistema.de.hotel;
 
 public class SistemaDeHotel {
 
-   
+  
     public static void main(String[] args) {
        
     }
