@@ -6,19 +6,34 @@ package sistema.de.hotel;
 
 /**
  *
- * @author harol
+ * @author harold
  */
 public class Habitaciones {
     
-    private int id;
+    private int idTipoH;
     private int numH;
+    private int ocupado;
 
-    public int getId() {
-        return id;
+    public Habitaciones(int idTipoH, int numH, int ocupado) {
+        this.idTipoH = idTipoH;
+        this.numH = numH;
+        this.ocupado = ocupado;
+    }
+    
+    public int getIdTipoH() {
+        return idTipoH;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTipoH(int idTipoH) {
+        this.idTipoH = idTipoH;
+    }
+
+    public int getOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(int ocupado) {
+        this.ocupado = ocupado;
     }
 
     public int getNumH() {
@@ -31,9 +46,9 @@ public class Habitaciones {
 
     @Override
     public String toString() {
-        return "Habitaciones{" + "id=" + id + ", numH=" + numH + '}';
+        return "Habitaciones{" + "idTipoH=" + idTipoH + ", numH=" + numH + ", ocupado=" + ocupado + '}';
     }
-    
+
     
     
     
