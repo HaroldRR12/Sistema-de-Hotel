@@ -11,11 +11,13 @@ package sistema.de.hotel;
 public class Habitaciones {
     
     private int numH;
-    private int ocupado;
+    private boolean ocupado;
+    private int tipoDeH;
 
-    public Habitaciones(int numH, int ocupado) {
+    public Habitaciones(int numH, boolean ocupado, int tipoDeH) {
         this.numH = numH;
         this.ocupado = ocupado;
+        this.tipoDeH = tipoDeH;
     }
 
     public int getNumH() {
@@ -26,11 +28,11 @@ public class Habitaciones {
         this.numH = numH;
     }
 
-    public int getOcupado() {
+    public boolean getOcupado() {
         return ocupado;
     }
 
-    public void setOcupado(int ocupado) {
+    public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
 

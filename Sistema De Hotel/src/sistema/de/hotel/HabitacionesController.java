@@ -55,14 +55,16 @@ public class HabitacionesController {
         }
     }
     
-    public void buscarHabitacion(int index){
+    public Habitaciones buscarHabitacion(int index){
                 
         Optional<Habitaciones> roomSearch = habitaciones.stream().filter(t -> t.getNumH()== index).findFirst();
         
         if(roomSearch.isPresent()){
-            System.out.println("Tipo de habitacion encontrado" + roomSearch.get());
+            System.out.println("Tipo de habitacion encontrado");
+            return roomSearch.get();
         }else{
             System.out.println("Tipo de habitacion no encontrada");
+            return null;
         }   
     }
     
