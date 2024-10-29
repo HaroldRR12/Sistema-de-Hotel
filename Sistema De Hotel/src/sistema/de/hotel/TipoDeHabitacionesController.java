@@ -18,57 +18,56 @@ import java.util.Optional;
  *
  * @author harold
  */
-public class HabitacionesController {
+public class TipoDeHabitacionesController {
     
-    private static final String FILE_NAME = "habitaciones.dat";
-    private List<Habitaciones> habitaciones;
+    private static final String FILE_NAME = "tipodehabitaciones.dat";
+    private List<TipoDeHabitaciones> tipodehabitaciones;
     
-    private HabitacionesController(){
-    habitaciones = new ArrayList();
+    private TipoDeHabitacionesController(){
+    tipodehabitaciones = new ArrayList();
     cargarDatos();
     }
     
-    public void agregarHabitacion(Habitaciones cuarto){
-        habitaciones.add(cuarto);
+    public void agregarTipoDeHabitacion(TipoDeHabitaciones tipo){
+        tipodehabitaciones.add(tipo);
         guardarDatos();
     }
     
-    public List<Habitaciones> obtenerHabitaciones(){
-        return habitaciones;
+    public List<TipoDeHabitaciones> obtenerHabitaciones(){
+        return tipodehabitaciones;
     }
     
-     public void actualizarHabitacion(int index, Habitaciones nuevaHabitacion) {
-        if (index >= 0 && index < habitaciones.size()) {
-            habitaciones.set(index, nuevaHabitacion);
+     public void actualizarTipoDeHabitacion(int index, TipoDeHabitaciones nuevoTipoHabitacion) {
+        if (index >= 0 && index < tipodehabitaciones.size()) {
+            tipodehabitaciones.set(index, nuevoTipoHabitacion);
             guardarDatos();
         } else {
             System.out.println("Índice no válido");
         }
     }
 
-    public void borrarHabitacion(int index) {
-        if (index >= 0 && index < habitaciones.size()) {
-            habitaciones.remove(index);
+    public void borrarTipoDeHabitacion(int index) {
+        if (index >= 0 && index < tipodehabitaciones.size()) {
+            tipodehabitaciones.remove(index);
             guardarDatos();
         } else {
             System.out.println("Índice no válido");
         }
     }
     
-    public void buscarHabitacion(int index){
-                
-        Optional<Habitaciones> roomSearch = habitaciones.stream().filter(t -> t.getNumH()== index).findFirst();
+    public void buscarTipoDeHabitacion(int index){ 
+        Optional<TipoDeHabitaciones> roomSearch = tipodehabitaciones.stream().filter(t -> t.getId() == index).findFirst();
         
         if(roomSearch.isPresent()){
             System.out.println("Tipo de habitacion encontrado" + roomSearch.get());
         }else{
             System.out.println("Tipo de habitacion no encontrada");
-        }   
+        }        
     }
     
     private void cargarDatos(){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))){
-            habitaciones = (List<Habitaciones>) ois.readObject();
+            tipodehabitaciones = (List<TipoDeHabitaciones>) ois.readObject();
         }catch(FileNotFoundException e){
             System.out.println("Archivo no encontrado, creando uno nuevo");
         }catch(IOException | ClassNotFoundException e){
@@ -78,10 +77,11 @@ public class HabitacionesController {
     
     private void guardarDatos(){
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))){
-            oos.writeObject(habitaciones);
+            oos.writeObject(tipodehabitaciones);
         }catch(IOException e){
             e.printStackTrace();
-        }   
+        }
+        
+        
     }
-    
 }
