@@ -40,6 +40,10 @@ public class Habitaciones {
     public String toString() {
         return "Habitaciones{" + "numH=" + numH + ", ocupado=" + ocupado + '}';
     }
+
+    int getidCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

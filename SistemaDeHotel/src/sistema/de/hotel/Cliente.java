@@ -12,50 +12,32 @@ import java.util.Scanner;
  * @author Stevef
  */
 public class Cliente {
+
       //Variables
-    private String idCliente;
+    private  int idCliente;
     private String nombre;
     private String email;
-    private String documento;
+    private int documento;
     private String contrasena;
     private String prefAlimentarias;
     private List<String> alergias;
     private String medicamentos;
 
-    // Constructor vacío
-    public Cliente() {}
+    // Constructor 
 
-    // Método para registrar los datos del cliente desde la consola
-    public void registrarCliente() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Ingrese ID del cliente: ");
-        this.idCliente = scanner.nextLine();
-
-        System.out.print("Ingrese nombre del cliente: ");
-        this.nombre = scanner.nextLine();
-
-        System.out.print("Ingrese email del cliente: ");
-        this.email = scanner.nextLine();
-
-        System.out.print("Ingrese documento del cliente: ");
-        this.documento = scanner.nextLine();
-
-        System.out.print("Ingrese contraseña: ");
-        this.contrasena = scanner.nextLine();
-
-        System.out.print("Ingrese preferencias alimentarias: ");
-        this.prefAlimentarias = scanner.nextLine();
-
-        System.out.print("Ingrese alergias (separadas por coma): ");
-        this.alergias = List.of(scanner.nextLine().split(","));
-
-        System.out.print("Ingrese medicamentos: ");
-        this.medicamentos = scanner.nextLine();
+    public Cliente(int idCliente, String nombre, String email, int documento, String contrasena, String prefAlimentarias, List<String> alergias, String medicamentos) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.email = email;
+        this.documento = documento;
+        this.contrasena = contrasena;
+        this.prefAlimentarias = prefAlimentarias;
+        this.alergias = alergias;
+        this.medicamentos = medicamentos;
     }
-
+  
     // Getters
-    public String getIdCliente() {
+    public int getIdCliente() {
         return idCliente;
     }
 
@@ -75,11 +57,33 @@ public class Cliente {
         return prefAlimentarias;
     }
 
+    public int getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(int documento) {
+        this.documento = documento;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(String medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+ 
     @Override
     public String toString() {
         return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", email=" + email + ", documento=" + documento + ", contrasena=" + contrasena + ", prefAlimentarias=" + prefAlimentarias + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
     }
-    
-    
     
 }
