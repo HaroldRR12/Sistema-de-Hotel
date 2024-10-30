@@ -5,18 +5,24 @@
 package sistema.de.hotel;
 
 import java.awt.Component;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author harold
  */
 public class RegistrarHabitacion extends javax.swing.JPanel {
+    
+    DefaultListModel listaTipos = new DefaultListModel();
 
     /**
      * Creates new form RegistrarHabitacion
      */
     public RegistrarHabitacion() {
         initComponents();
+        listaTipos = new DefaultListModel();
+        listTipoDeHabitacion.setModel(listaTipos);
+        
     }
 
     /**
