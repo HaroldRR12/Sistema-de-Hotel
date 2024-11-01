@@ -4,17 +4,20 @@
  */
 package sistema.de.hotel;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author harold
  */
 public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RegistrarTipoDeHabitacion
-     */
+    DefaultTableModel tm = new DefaultTableModel();
+    TipoDeHabitacionesController tHabitacionController = new TipoDeHabitacionesController();
+    
     public RegistrarTipoDeHabitacion() {
         initComponents();
+        
     }
 
     /**
@@ -26,12 +29,47 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPrecioTipoHabitacion = new javax.swing.JTextField();
         txtNombreTipoDeHabitacion = new javax.swing.JTextField();
         btnCrearTipo = new javax.swing.JButton();
+        btnEliminarTipo = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableTipos = new javax.swing.JTable();
+        lblError = new javax.swing.JLabel();
+        btnActualizarTipo = new javax.swing.JButton();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("REGISTRO DE TIPOS DE HABITACION");
@@ -47,6 +85,33 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             }
         });
 
+        btnEliminarTipo.setText("Eliminar");
+        btnEliminarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTipoActionPerformed(evt);
+            }
+        });
+
+        jTableTipos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Precio"
+            }
+        ));
+        jScrollPane4.setViewportView(jTableTipos);
+
+        btnActualizarTipo.setText("Actualizar");
+        btnActualizarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarTipoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -54,56 +119,134 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
+                                .addGap(30, 30, 30)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnEliminarTipo)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnActualizarTipo)))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(txtNombreTipoDeHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
                                 .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(btnCrearTipo))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addComponent(lblError))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(txtNombreTipoDeHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(btnCrearTipo)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel1)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txtNombreTipoDeHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCrearTipo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminarTipo)
+                            .addComponent(btnActualizarTipo)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreTipoDeHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCrearTipo)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblError)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearTipoMouseClicked
         
-        String tipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
+        if(txtNombreTipoDeHabitacion.getText().length() == 0){
+            
+            lblError.setText("Debes ingresar un nombre");
+            
+        }else if(txtPrecioTipoHabitacion.getText().length() == 0){
+            
+            lblError.setText("Debes ingresar un precio");
+            
+        }else{
+            String tipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
+            int precioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText());
+            int id =+ 1;
+            //Creacion del objeto
+            TipoDeHabitaciones tHabitacion = new TipoDeHabitaciones(precioTipoHabitacion, tipoDeHabitacion, id);
+            //Añade el objeto al archivo creado
+            tHabitacionController.agregarTipoDeHabitacion(tHabitacion);
+            //Añade el objeto a la tabla
+            tm.addRow(new Object[]{tHabitacionController.obtenerHabitaciones()});
+            
+            //Limpieza de las casillas de texto
+            txtNombreTipoDeHabitacion.setText("");
+            txtPrecioTipoHabitacion.setText("");
+            //Mensaje para verificarle al usuario la accion realizada
+            lblError.setText("Tipo de habitacion agregado exitosamente");
+        }
+        
+        
         
         
     }//GEN-LAST:event_btnCrearTipoMouseClicked
 
+    private void btnEliminarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoActionPerformed
+        //Elimina el tipo de habitacion de la tabla y del archivo
+        tm.removeRow(jTableTipos.getSelectedRow());
+        tHabitacionController.borrarTipoDeHabitacion(jTableTipos.getSelectedRow());
+        //Mensaje para verificarle al usuario la accion realizada
+        lblError.setText("Tipo de habitacion removido exitosamente");
+        
+    }//GEN-LAST:event_btnEliminarTipoActionPerformed
+
+    private void btnActualizarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTipoActionPerformed
+        
+        
+    }//GEN-LAST:event_btnActualizarTipoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarTipo;
     private javax.swing.JButton btnCrearTipo;
+    private javax.swing.JButton btnEliminarTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableTipos;
+    private javax.swing.JLabel lblError;
     private javax.swing.JTextField txtNombreTipoDeHabitacion;
     private javax.swing.JTextField txtPrecioTipoHabitacion;
     // End of variables declaration//GEN-END:variables

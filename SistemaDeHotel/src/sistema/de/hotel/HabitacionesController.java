@@ -23,7 +23,7 @@ public class HabitacionesController {
     private static final String FILE_NAME = "habitaciones.dat";
     private List<Habitaciones> habitaciones;
     
-    private HabitacionesController(){
+    public HabitacionesController(){
     habitaciones = new ArrayList();
     cargarDatos();
     }
