@@ -5,6 +5,7 @@
 package sistema.de.hotel.pantallas;
 
 import javax.swing.JOptionPane;
+import sistema.de.hotel.controllers.UsuarioController;
 
 /**
  *
@@ -33,8 +34,7 @@ public class InicioSesion extends javax.swing.JFrame {
         lblcontra = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         btninicio = new javax.swing.JButton();
-        btnregistrar = new javax.swing.JButton();
-        txtcontrasena = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,40 +63,34 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
-        btnregistrar.setText("Registrar");
-
-        txtcontrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcontrasenaActionPerformed(evt);
-            }
-        });
+        jPasswordField1.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblusuario)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblcontra)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btninicio)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnregistrar)
-                                .addGap(35, 35, 35))
-                            .addComponent(txtcontrasena))))
-                .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addComponent(lblname)
-                .addGap(113, 114, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblcontra)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblusuario)
+                                .addGap(3, 3, 3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtusuario)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                        .addGap(102, 102, 102))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btninicio, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(163, 163, 163))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,16 +100,14 @@ public class InicioSesion extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblusuario)
-                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcontra)
-                    .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btninicio)
-                    .addComponent(btnregistrar))
-                .addContainerGap(79, Short.MAX_VALUE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btninicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,12 +118,12 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btninicioActionPerformed
 
     private void btninicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btninicioMouseClicked
-        String usuario="Admin";
-        String contrasena="1234";
+       
+        UsuarioController usercontroller = new UsuarioController();
 
         
         if (txtusuario.getText().equals (usuario)&& txtcontrasena.getText().equals(contrasena)){
-         JOptionPane.showMessageDialog(null, "Iniciando sesion");
+         
             
         }else{
             
@@ -139,17 +131,13 @@ public class InicioSesion extends javax.swing.JFrame {
             
         }
         txtusuario.setText("");
-        txtcontrasena.setText("");
+        
                 
     }//GEN-LAST:event_btninicioMouseClicked
 
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtusuarioActionPerformed
-
-    private void txtcontrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontrasenaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontrasenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,11 +176,10 @@ public class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btninicio;
-    private javax.swing.JButton btnregistrar;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblcontra;
     private javax.swing.JLabel lblname;
     private javax.swing.JLabel lblusuario;
-    private javax.swing.JTextField txtcontrasena;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
