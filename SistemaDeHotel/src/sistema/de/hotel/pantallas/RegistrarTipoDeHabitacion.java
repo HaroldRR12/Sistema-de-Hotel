@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package sistema.de.hotel;
+package sistema.de.hotel.pantallas;
 
+import sistema.de.hotel.controllers.TipoDeHabitacionesController;
 import javax.swing.table.DefaultTableModel;
+import sistema.de.hotel.TipoDeHabitaciones;
 
 /**
  *
@@ -142,14 +144,11 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
                                 .addGap(25, 25, 25)
                                 .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(40, 40, 40)
-                                        .addComponent(btnCrearTipo))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(58, 58, 58)
-                                        .addComponent(lblError))))))
+                                .addGap(40, 40, 40)
+                                .addComponent(btnCrearTipo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(lblError))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(jLabel1)))
@@ -186,11 +185,11 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearTipoMouseClicked
-        
+        //Error si no hay nombre
         if(txtNombreTipoDeHabitacion.getText().length() == 0){
             
             lblError.setText("Debes ingresar un nombre");
-            
+        //Error si no hay precio
         }else if(txtPrecioTipoHabitacion.getText().length() == 0){
             
             lblError.setText("Debes ingresar un precio");
