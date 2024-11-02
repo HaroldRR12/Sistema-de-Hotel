@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package sistema.de.hotel;
+package sistema.de.hotel.controllers;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import sistema.de.hotel.Cliente;
 
 /**
  *
@@ -58,7 +59,7 @@ public class ClienteController {
     
     public Cliente buscarCliente(int index){
                 
-        Optional<Cliente> roomSearch = clientes.stream().filter(t -> t.getIdCliente()== index).findFirst();
+        Optional<Cliente> roomSearch = clientes.stream().filter(t -> t.getCedula()== index).findFirst();
         
         if(roomSearch.isPresent()){
             System.out.println("Cliente encontrado");

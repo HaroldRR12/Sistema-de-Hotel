@@ -5,7 +5,7 @@
 package sistema.de.hotel;
 
 import java.util.List;
-import java.util.Scanner;
+
 
 /**
  *
@@ -14,31 +14,29 @@ import java.util.Scanner;
 public class Cliente {
 
       //Variables
-    private  int idCliente;
+    private  int Cedula;
     private String nombre;
     private String email;
-    private int documento;
-    private String contrasena;
     private String prefAlimentarias;
+    private String Nacimiento;
     private List<String> alergias;
     private String medicamentos;
 
     // Constructor 
 
-    public Cliente(int idCliente, String nombre, String email, int documento, String contrasena, String prefAlimentarias, List<String> alergias, String medicamentos) {
-        this.idCliente = idCliente;
+    public Cliente(int Cedula, String nombre, String email, String prefAlimentarias, List<String> alergias, String medicamentos, String Nacimiento) {
+        this.Cedula = Cedula;
         this.nombre = nombre;
         this.email = email;
-        this.documento = documento;
-        this.contrasena = contrasena;
         this.prefAlimentarias = prefAlimentarias;
         this.alergias = alergias;
         this.medicamentos = medicamentos;
+        this.Nacimiento = Nacimiento;
     }
   
     // Getters
-    public int getIdCliente() {
-        return idCliente;
+    public int getCedula() {
+        return Cedula;
     }
 
     public String getNombre() {
@@ -56,34 +54,26 @@ public class Cliente {
     public String getPrefAlimentarias() {
         return prefAlimentarias;
     }
-
-    public int getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(int documento) {
-        this.documento = documento;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public String getMedicamentos() {
+     public String getMedicamentos() {
         return medicamentos;
     }
 
     public void setMedicamentos(String medicamentos) {
         this.medicamentos = medicamentos;
     }
- 
+
+    public String getNacimiento() {
+        return Nacimiento;
+    }
+
+    public void setNacimiento(String Nacimiento) {
+        this.Nacimiento = Nacimiento;
+    }
+
     @Override
     public String toString() {
-        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", email=" + email + ", documento=" + documento + ", contrasena=" + contrasena + ", prefAlimentarias=" + prefAlimentarias + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
+        return "Cliente{" + "Cedula=" + Cedula + ", nombre=" + nombre + ", email=" + email + ", prefAlimentarias=" + prefAlimentarias + ", Nacimiento=" + Nacimiento + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
     }
+    
     
 }
