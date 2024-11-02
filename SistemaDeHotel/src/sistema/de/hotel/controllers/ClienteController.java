@@ -59,7 +59,7 @@ public class ClienteController {
     
     public Cliente buscarCliente(int index){
                 
-        Optional<Cliente> roomSearch = clientes.stream().filter(t -> t.getIdCliente()== index).findFirst();
+        Optional<Cliente> roomSearch = clientes.stream().filter(t -> t.getCedula()== index).findFirst();
         
         if(roomSearch.isPresent()){
             System.out.println("Cliente encontrado");
