@@ -24,6 +24,11 @@ public class UsuarioController {
  private static final String FILE_NAME = "usuario.dat";
     private List<Usuarios> usuarios;
     
+    public boolean validarLogin(String usuario, String contrasena){
+        String usuarioCorrecto ="admin";
+        String contrasenaCorrecto ="12345";
+        return  usuario.equals(usuarioCorrecto) && contrasena.equals(contrasenaCorrecto);
+    }
     public UsuarioController(){
     usuarios = new ArrayList();
     cargarDatos();
@@ -49,4 +54,5 @@ public class UsuarioController {
             e.printStackTrace();
         }
         
+         }
 }
