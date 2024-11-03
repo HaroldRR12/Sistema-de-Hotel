@@ -12,14 +12,16 @@ import java.io.Serializable;
  */
 public class Aditional implements Serializable {
     //Constructor
-    public Aditional(String nombre, int id) {
+    public Aditional(String nombre, int precio) {
         this.nombre = nombre;
-        this.id = id;
+        this.precio = precio;
+        this.id = (int) Math.random();
     }
     
     
     //Atributos
     private String nombre;
+    private int precio;
     private int id;
     
     // Getters and Setters 

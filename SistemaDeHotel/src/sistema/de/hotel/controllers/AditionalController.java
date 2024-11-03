@@ -31,6 +31,7 @@ public class AditionalController {
     public void agregarAdicional (Aditional servicio)
     {
         aditionals.add(servicio);
+        cargarDatos();
     }
     
     //Obtener lista de adicionales en la lista
