@@ -39,27 +39,27 @@ public class ClienteController {
         return clientes;
     }
     
-     public void actualizarCliente(int index, Cliente nuevoCliente) {
-        if (index >= 0 && index < clientes.size()) {
-            clientes.set(index, nuevoCliente);
+     public void actualizarCliente(int cedula, Cliente nuevoCliente) {
+        if (cedula >= 0 && cedula < clientes.size()) {
+            clientes.set(cedula, nuevoCliente);
             guardarDatos();
         } else {
             System.out.println("Índice no válido");
         }
     }
 
-    public void borrarCliente(int index) {
-        if (index >= 0 && index < clientes.size()) {
-            clientes.remove(index);
+    public void borrarCliente(int cedula) {
+        if (cedula >= 0 && cedula < clientes.size()) {
+            clientes.remove(cedula);
             guardarDatos();
         } else {
             System.out.println("Índice no válido");
         }
     }
     
-    public Cliente buscarCliente(int index){
+    public Cliente buscarCliente(int cedula){
                 
-        Optional<Cliente> roomSearch = clientes.stream().filter(t -> t.getCedula()== index).findFirst();
+        Optional<Cliente> roomSearch = clientes.stream().filter(t -> t.getCedula()== cedula).findFirst();
         
         if(roomSearch.isPresent()){
             System.out.println("Cliente encontrado");

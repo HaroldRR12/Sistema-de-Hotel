@@ -90,6 +90,11 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
                 btnCrearTipoMouseClicked(evt);
             }
         });
+        btnCrearTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearTipoActionPerformed(evt);
+            }
+        });
 
         btnEliminarTipo.setText("Eliminar");
         btnEliminarTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +268,10 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
         txtPrecioTipoHabitacion.setText(tm.getValueAt(sr, 1).toString());
         
     }//GEN-LAST:event_jTableTiposMouseClicked
+
+    private void btnCrearTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearTipoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

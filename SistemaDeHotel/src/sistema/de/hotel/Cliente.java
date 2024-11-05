@@ -13,28 +13,31 @@ import java.util.List;
  */
 public class Cliente {
 
+
       //Variables
     private  int Cedula;
     private String nombre;
     private String email;
-    private String prefAlimentarias;
     private String Nacimiento;
-    private List<String> alergias;
+    private String alergias;
     private String medicamentos;
+    
 
     // Constructor 
 
-    public Cliente(int Cedula, String nombre, String email, String prefAlimentarias, List<String> alergias, String medicamentos, String Nacimiento) {
+    public Cliente(int Cedula, String nombre, String email, String alergias, String medicamentos, String Nacimiento) {
         this.Cedula = Cedula;
         this.nombre = nombre;
         this.email = email;
-        this.prefAlimentarias = prefAlimentarias;
         this.alergias = alergias;
         this.medicamentos = medicamentos;
         this.Nacimiento = Nacimiento;
+        
     }
   
     // Getters
+    
+    
     public int getCedula() {
         return Cedula;
     }
@@ -47,17 +50,15 @@ public class Cliente {
         return email;
     }
 
-    public List<String> getAlergias() {
+    public String getAlergias() {
         return alergias;
     }
-
-    public String getPrefAlimentarias() {
-        return prefAlimentarias;
-    }
+    
      public String getMedicamentos() {
         return medicamentos;
     }
 
+     
     public void setMedicamentos(String medicamentos) {
         this.medicamentos = medicamentos;
     }
@@ -72,8 +73,10 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "Cedula=" + Cedula + ", nombre=" + nombre + ", email=" + email + ", prefAlimentarias=" + prefAlimentarias + ", Nacimiento=" + Nacimiento + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
+        return "Cliente{" + "Cedula=" + Cedula + ", nombre=" + nombre + ", email=" + email + ", Nacimiento=" + Nacimiento + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
     }
+
+   
     
     
 }
