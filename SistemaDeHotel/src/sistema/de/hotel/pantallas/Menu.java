@@ -131,11 +131,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 930, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -149,13 +149,8 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         RegistrarTipoDeHabitacion RTH = new RegistrarTipoDeHabitacion();
         this.setContentPane(RTH);
-        
-        
         this.revalidate();
         this.repaint();
-        
-        
-        
         
     }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
 

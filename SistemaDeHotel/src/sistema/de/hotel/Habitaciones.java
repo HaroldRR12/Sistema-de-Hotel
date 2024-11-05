@@ -4,11 +4,13 @@
  */
 package sistema.de.hotel;
 
+import java.io.Serializable;
+
 /**
  *
  * @author harold
  */
-public class Habitaciones {
+public class Habitaciones implements Serializable{
     
     private int numH;
     private boolean ocupado;

@@ -4,6 +4,7 @@
  */
 package sistema.de.hotel.pantallas;
 
+import java.util.List;
 import sistema.de.hotel.controllers.TipoDeHabitacionesController;
 import javax.swing.table.DefaultTableModel;
 import sistema.de.hotel.TipoDeHabitaciones;
@@ -17,11 +18,18 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
     DefaultTableModel tm = new DefaultTableModel();
     TipoDeHabitacionesController tHabitacionController = new TipoDeHabitacionesController();
     
-    int id;
+    int idContador;
+    
     
     public RegistrarTipoDeHabitacion() {
         initComponents();
-        
+        jTableTipos.setModel(new javax.swing.table.DefaultTableModel(tHabitacionController.refrescarTabla()
+,
+
+    new String [] {
+       "ID", "Nombre", "Precio"
+    }
+));
     }
 
     /**
@@ -100,20 +108,17 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
 
         jTableTipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nombre", "Precio"
+                "ID", "Nombre", "Precio"
             }
         ));
-        jTableTipos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableTiposMouseClicked(evt);
-            }
-        });
         jScrollPane4.setViewportView(jTableTipos);
 
         btnActualizarTipo.setText("Actualizar");
@@ -128,47 +133,47 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btnCrearTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(91, 91, 91)
+                                .addComponent(btnCrearTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(104, 104, 104)
                         .addComponent(txtNombreTipoDeHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEliminarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnActualizarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(115, 115, 115))
-            .addGroup(layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(lblError))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(jLabel1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnEliminarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnActualizarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,56 +184,63 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
                         .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCrearTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)))
-                .addComponent(lblError)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
+                .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearTipoMouseClicked
-        //Error si no hay nombre
-        if(txtNombreTipoDeHabitacion.getText().length() == 0){
-            
-            lblError.setText("Debes ingresar un nombre");
-        //Error si no hay precio
-        }else if(txtPrecioTipoHabitacion.getText().length() == 0){
-            
-            lblError.setText("Debes ingresar un precio");
-            
-        }else{
-            String tipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
+       try {
+            // Convertir el precio a int
             int precioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText());
-            int id =+ 1;
-            //Creacion del objeto
-            TipoDeHabitaciones tHabitacion = new TipoDeHabitaciones(precioTipoHabitacion, tipoDeHabitacion, id);
-            //Añade el objeto al archivo creado
-            tHabitacionController.agregarTipoDeHabitacion(tHabitacion);
-            //Añade el objeto a la tabla
-            tm.addRow(new Object[]{tHabitacionController.obtenerHabitaciones()});
+            // Crear el objeto Tipo De Habitaciones con el id único
+            String tipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
+            TipoDeHabitaciones tHabitacion = new TipoDeHabitaciones(precioTipoHabitacion, tipoDeHabitacion, idContador++);
             
-            //Limpieza de las casillas de texto
+            // Añadir el objeto al archivo
+            tHabitacionController.agregarTipoDeHabitacion(tHabitacion);
+
+            //Añadir objeto a la tablas
+            jTableTipos.setModel(new javax.swing.table.DefaultTableModel(tHabitacionController.refrescarTabla()
+,
+
+    new String [] {
+       "ID", "Nombre", "Precio"
+    }
+));
+            // Limpiar las casillas de texto
             txtNombreTipoDeHabitacion.setText("");
             txtPrecioTipoHabitacion.setText("");
-            //Mensaje para verificarle al usuario la accion realizada
-            lblError.setText("Tipo de habitacion agregado exitosamente");
+
+            // Confirmar la acción al usuario
+            lblError.setText("Tipo de habitación agregado exitosamente");
+
+        } catch (NumberFormatException e) {
+            lblError.setText("El precio debe ser un número válido");
         }
-        
-        
-        
-        
     }//GEN-LAST:event_btnCrearTipoMouseClicked
 
     private void btnEliminarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoActionPerformed
         //Elimina el tipo de habitacion de la tabla y del archivo
-        tm.removeRow(jTableTipos.getSelectedRow());
-        tHabitacionController.borrarTipoDeHabitacion(jTableTipos.getSelectedRow());
-        //Mensaje para verificarle al usuario la accion realizada
-        lblError.setText("Tipo de habitacion removido exitosamente");
-        
+        int filaSeleccionada = jTableTipos.getSelectedRow();
+
+        if (filaSeleccionada != -1) { // Asegúrate de que una fila esté seleccionada
+            DefaultTableModel modelo = (DefaultTableModel) jTableTipos.getModel();
+            modelo.removeRow(filaSeleccionada); // Eliminar la fila del modelo
+            tHabitacionController.borrarTipoDeHabitacion(jTableTipos.getSelectedRow());
+            
+        lblError.setText("Tipo de habitacion removido exitosamente");//Mensaje para verificarle al usuario la accion realizada
+         } else {
+         lblError.setText("Debes seleccionar una fila para eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarTipoActionPerformed
 
     private void btnActualizarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTipoActionPerformed
@@ -248,21 +260,8 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             String nuevoTipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
             int nuevoPrecioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText());
             
-            
-            
-        TipoDeHabitaciones nuevoTHabitacion = new TipoDeHabitaciones(nuevoPrecioTipoHabitacion, nuevoTipoDeHabitacion , id);
-            
         }
     }//GEN-LAST:event_btnActualizarTipoActionPerformed
-
-    private void jTableTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTiposMouseClicked
-        
-        int sr = jTableTipos.getSelectedRow();
-        
-        txtNombreTipoDeHabitacion.setText(tm.getValueAt(sr, 0).toString());
-        txtPrecioTipoHabitacion.setText(tm.getValueAt(sr, 1).toString());
-        
-    }//GEN-LAST:event_jTableTiposMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

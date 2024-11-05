@@ -4,11 +4,13 @@
  */
 package sistema.de.hotel;
 
+import java.io.Serializable;
+
 /**
  *
  * @author harold
  */
-public class TipoDeHabitaciones {
+public class TipoDeHabitaciones implements Serializable {
     
     private int precio;
     private String tipoHabitacion;

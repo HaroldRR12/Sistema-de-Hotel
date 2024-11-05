@@ -68,6 +68,19 @@ public class TipoDeHabitacionesController {
         }        
     }
     
+    public Object[][] refrescarTabla(){
+        List<TipoDeHabitaciones> list = obtenerHabitaciones();
+        int contador =0;
+        Object[][] table = new Object[list.size()][3];
+        for (TipoDeHabitaciones h : list) {
+            table[contador][0]=h.getId();
+            table[contador][1]=h.getTipoHabitacion();
+            table[contador][2]=h.getPrecio();
+            contador++;
+        }
+        return table;
+    }
+    
     private void cargarDatos(){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))){
             tipodehabitaciones = (List<TipoDeHabitaciones>) ois.readObject();
