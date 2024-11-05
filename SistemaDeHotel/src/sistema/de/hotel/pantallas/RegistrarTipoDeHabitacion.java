@@ -4,6 +4,9 @@
  */
 package sistema.de.hotel.pantallas;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import sistema.de.hotel.controllers.TipoDeHabitacionesController;
 import javax.swing.table.DefaultTableModel;
@@ -19,20 +22,15 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
     TipoDeHabitacionesController tHabitacionController = new TipoDeHabitacionesController();
     
     
-    int idContador;
-    
-    
     public RegistrarTipoDeHabitacion() {
         initComponents();
         jTableTipos.setModel(new javax.swing.table.DefaultTableModel(tHabitacionController.refrescarTabla()
 ,
-
     new String [] {
        "ID", "Nombre", "Precio"
     }
 ));
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,7 +215,10 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             int precioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText());
             // Crear el objeto Tipo De Habitaciones con el id único
             String tipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
-            TipoDeHabitaciones tHabitacion = new TipoDeHabitaciones(precioTipoHabitacion, tipoDeHabitacion, idContador++);
+            //Generar el id
+            int id = tHabitacionController.generarNuevoId();
+            
+            TipoDeHabitaciones tHabitacion = new TipoDeHabitaciones(precioTipoHabitacion, tipoDeHabitacion, id);
             
             // Añadir el objeto al archivo
             tHabitacionController.agregarTipoDeHabitacion(tHabitacion);
@@ -238,21 +239,24 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             lblError.setText("Tipo de habitación agregado exitosamente");
 
         } catch (NumberFormatException e) {
-            lblError.setText("El precio debe ser un número válido");
+            lblError.setText("El precio debe ser un número válido");//Posible error
         }
     }//GEN-LAST:event_btnCrearTipoMouseClicked
 
     private void btnEliminarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoActionPerformed
-        //Elimina el tipo de habitacion de la tabla y del archivo
+        
         int filaSeleccionada = jTableTipos.getSelectedRow();
 
-        if (filaSeleccionada != -1) { // Asegúrate de que una fila esté seleccionada
+        if (filaSeleccionada != -1) { //Asegurar la seleccion
+            
             DefaultTableModel modelo = (DefaultTableModel) jTableTipos.getModel();
-            Object cellValue = modelo.getValueAt(jTableTipos.getSelectedRow(), 0);
+            
+            Object cellValue = modelo.getValueAt(jTableTipos.getSelectedRow(), 0);//Obtener el id de la celda
             
             modelo.removeRow(filaSeleccionada); // Eliminar la fila del modelo
             
             if (cellValue instanceof Integer) {
+                //Elimina el tipo de habitacion de la tabla y del archivo
                 int intValor = (Integer) cellValue;
                 tHabitacionController.borrarTipoDeHabitacion(intValor);
                 tHabitacionController.refrescarTabla();
@@ -280,19 +284,17 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             
             
             String nuevoNombreTipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
-            int nuevoPrecioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText()); 
+            int nuevoPrecioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText()); //Guardar los nuvos datos
             
-            
+            //Nuevo objeto par remplazar
             TipoDeHabitaciones nuevoTipoHabitacion = new TipoDeHabitaciones(id, nuevoNombreTipoDeHabitacion, nuevoPrecioTipoHabitacion);
             
             
-            tHabitacionController.actualizarTipoDeHabitacion(id, nuevoTipoHabitacion);
+            tHabitacionController.actualizarTipoDeHabitacion(id, nuevoTipoHabitacion);//Funcion para actualizar
 
-            
+            //Cambiar los datos en la tabla
             ((DefaultTableModel) jTableTipos.getModel()).setValueAt(nuevoNombreTipoDeHabitacion, filaSeleccionada, 1); 
             ((DefaultTableModel) jTableTipos.getModel()).setValueAt(nuevoPrecioTipoHabitacion, filaSeleccionada, 2); 
-            
-            
             
             lblError.setText("Tipo de habitación actualizado exitosamente");//Mensaje de exito
         }
