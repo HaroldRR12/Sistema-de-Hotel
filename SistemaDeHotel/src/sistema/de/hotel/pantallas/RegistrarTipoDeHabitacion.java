@@ -261,6 +261,8 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
                 tHabitacionController.borrarTipoDeHabitacion(intValor);
                 tHabitacionController.refrescarTabla();
                 lblError.setText("Tipo de habitacion removido exitosamente");//Mensaje de exito
+                txtNombreTipoDeHabitacion.setText("");
+                txtPrecioTipoHabitacion.setText("");
             }else {
                 lblError.setText("Debes seleccionar una fila para eliminar");//Mensaje de error
             }
@@ -287,7 +289,7 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             int nuevoPrecioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText()); //Guardar los nuvos datos
             
             //Nuevo objeto par remplazar
-            TipoDeHabitaciones nuevoTipoHabitacion = new TipoDeHabitaciones(id, nuevoNombreTipoDeHabitacion, nuevoPrecioTipoHabitacion);
+            TipoDeHabitaciones nuevoTipoHabitacion = new TipoDeHabitaciones(nuevoPrecioTipoHabitacion, nuevoNombreTipoDeHabitacion, id);
             
             
             tHabitacionController.actualizarTipoDeHabitacion(id, nuevoTipoHabitacion);//Funcion para actualizar
@@ -297,6 +299,8 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             ((DefaultTableModel) jTableTipos.getModel()).setValueAt(nuevoPrecioTipoHabitacion, filaSeleccionada, 2); 
             
             lblError.setText("Tipo de habitación actualizado exitosamente");//Mensaje de exito
+            txtNombreTipoDeHabitacion.setText("");
+            txtPrecioTipoHabitacion.setText("");
         }
         }else{
             lblError.setText("Debes seleccionar una fila para actualizar"); //Mensaje de error

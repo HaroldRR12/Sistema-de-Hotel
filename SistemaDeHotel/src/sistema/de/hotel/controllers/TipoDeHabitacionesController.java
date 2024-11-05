@@ -73,7 +73,6 @@ public class TipoDeHabitacionesController {
     }
 
     idContador = maxId + 1;
-    System.out.println("ID Contador inicializado a: " + idContador);
     }
     //Generar un nuevo id 
     public int generarNuevoId() {
