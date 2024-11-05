@@ -42,6 +42,10 @@ public class Aditional implements Serializable {
         this.id = id;
     }
     
+    public int getPrecio() {
+    return precio; 
+    }
+    
     //To string 
 
     @Override
