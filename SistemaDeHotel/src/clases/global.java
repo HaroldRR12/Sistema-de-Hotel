@@ -21,7 +21,7 @@ import java.util.StringTokenizer;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sistema.de.hotel.clases.reservacion;
+//import sistema.de.hotel.clases.reservacion;
 
 public class global {
     

@@ -4,14 +4,14 @@
  */
 package sistema.de.hotel;
 
-import java.util.List;
+import java.io.Serializable;
 
 
 /**
  *
  * @author Stevef
  */
-public class Cliente {
+public class Cliente implements Serializable{
 
 
       //Variables
