@@ -38,26 +38,26 @@ public class TipoDeHabitacionesController {
         return tipodehabitaciones;
     }
     
-     public void actualizarTipoDeHabitacion(int index, TipoDeHabitaciones nuevoTipoHabitacion) {
-        if (index >= 0 && index < tipodehabitaciones.size()) {
-            tipodehabitaciones.set(index, nuevoTipoHabitacion);
+     public void actualizarTipoDeHabitacion(int id, TipoDeHabitaciones nuevoTipoHabitacion) {
+        if (id >= 0 && id < tipodehabitaciones.size()) {
+            tipodehabitaciones.set(id, nuevoTipoHabitacion);
             guardarDatos();
         } else {
-            System.out.println("Índice no válido");
+            System.out.println("Id no válido");
         }
     }
 
-    public void borrarTipoDeHabitacion(int index) {
-        if (index >= 0 && index < tipodehabitaciones.size()) {
-            tipodehabitaciones.remove(index);
+    public void borrarTipoDeHabitacion(int id) {
+        if (id >= 0 && id < tipodehabitaciones.size()) {
+            tipodehabitaciones.remove(id);
             guardarDatos();
         } else {
-            System.out.println("Índice no válido");
+            System.out.println("id no válido");
         }
     }
     
-    public TipoDeHabitaciones buscarTipoDeHabitacion(int index){ 
-        Optional<TipoDeHabitaciones> roomSearch = tipodehabitaciones.stream().filter(t -> t.getId() == index).findFirst();
+    public TipoDeHabitaciones buscarTipoDeHabitacion(int id){ 
+        Optional<TipoDeHabitaciones> roomSearch = tipodehabitaciones.stream().filter(t -> t.getId() == id).findFirst();
         
         if(roomSearch.isPresent()){
             System.out.println("Tipo de habitacion encontrado");
