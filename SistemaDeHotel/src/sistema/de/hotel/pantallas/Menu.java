@@ -147,9 +147,16 @@ public class Menu extends javax.swing.JFrame {
 
     private void jCheckBoxMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem3ActionPerformed
         // TODO add your handling code here:
-        RegistrarHabitacion RTH = new RegistrarHabitacion();
-        RTH.setVisible(true);
-        dispose();
+        RegistrarTipoDeHabitacion RTH = new RegistrarTipoDeHabitacion();
+        this.setContentPane(RTH);
+        
+        
+        this.revalidate();
+        this.repaint();
+        
+        
+        
+        
     }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
 
     /**
