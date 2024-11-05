@@ -35,7 +35,7 @@ public class ListaAdicionales extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaListaAdicionales = new javax.swing.JList<>();
-        bntCargar = new javax.swing.JButton();
+        btnCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,10 +44,10 @@ public class ListaAdicionales extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(listaListaAdicionales);
 
-        bntCargar.setText("Cargar");
-        bntCargar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCargar.setText("Cargar");
+        btnCargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bntCargarMouseClicked(evt);
+                btnCargarMouseClicked(evt);
             }
         });
 
@@ -66,7 +66,7 @@ public class ListaAdicionales extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
-                        .addComponent(bntCargar)))
+                        .addComponent(btnCargar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,16 +77,16 @@ public class ListaAdicionales extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bntCargar)
+                .addComponent(btnCargar)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bntCargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntCargarMouseClicked
+    private void btnCargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCargarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_bntCargarMouseClicked
+    }//GEN-LAST:event_btnCargarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -124,7 +124,7 @@ public class ListaAdicionales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntCargar;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listaListaAdicionales;
