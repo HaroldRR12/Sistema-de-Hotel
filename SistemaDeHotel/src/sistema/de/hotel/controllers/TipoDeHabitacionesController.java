@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import sistema.de.hotel.TipoDeHabitaciones;
@@ -38,21 +39,45 @@ public class TipoDeHabitacionesController {
         return tipodehabitaciones;
     }
     
-     public void actualizarTipoDeHabitacion(int id, TipoDeHabitaciones nuevoTipoHabitacion) {
-        if (id >= 0 && id < tipodehabitaciones.size()) {
-            tipodehabitaciones.set(id, nuevoTipoHabitacion);
-            guardarDatos();
-        } else {
-            System.out.println("Id no válido");
-        }
+    public void actualizarTipoDeHabitacion(int id, TipoDeHabitaciones nuevoTipoHabitacion) {
+        boolean encontrado = false;
+
+        for (int x = 0; x < tipodehabitaciones.size(); x++) {
+            
+            TipoDeHabitaciones th = tipodehabitaciones.get(x);
+
+            if (th.getId() == id) { 
+                tipodehabitaciones.set(x, nuevoTipoHabitacion); // Actualizar el objeto en la lista
+                guardarDatos(); 
+                System.out.println("Tipo de habitación actualizado exitosamente.");
+                encontrado = true;
+                break; 
+            }
+    }      
+
+    if (!encontrado) {
+        System.out.println("ID no válido. No se encontró el tipo de habitación con ese ID.");
     }
+}
 
     public void borrarTipoDeHabitacion(int id) {
-        if (id >= 0 && id < tipodehabitaciones.size()) {
-            tipodehabitaciones.remove(id);
+        
+        Iterator<TipoDeHabitaciones> iterator = tipodehabitaciones.iterator();
+        boolean encontrado = false;//Boolean en caso de no encontrar la id
+        
+        while (iterator.hasNext()) {      
+        TipoDeHabitaciones th = iterator.next();
+        
+        if (th.getId() == id) { //Verificar id
+            iterator.remove();
+            encontrado = true;
             guardarDatos();
-        } else {
-            System.out.println("id no válido");
+            System.out.println("Tipo de Habitacion eliminado exitosamente");
+            break; 
+        }
+    }
+    if (!encontrado) {
+        System.out.println("ID no válido");
         }
     }
     

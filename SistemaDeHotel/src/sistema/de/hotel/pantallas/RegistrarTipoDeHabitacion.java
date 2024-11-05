@@ -18,6 +18,7 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
     DefaultTableModel tm = new DefaultTableModel();
     TipoDeHabitacionesController tHabitacionController = new TipoDeHabitacionesController();
     
+    
     int idContador;
     
     
@@ -118,8 +119,23 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
             new String [] {
                 "ID", "Nombre", "Precio"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableTipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTiposMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTableTipos);
+
+        lblError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnActualizarTipo.setText("Actualizar");
         btnActualizarTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +148,10 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -156,16 +176,10 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
                         .addComponent(btnActualizarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(115, 115, 115))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(76, 76, 76))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,12 +198,12 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
                         .addComponent(txtPrecioTipoHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCrearTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
+                        .addGap(67, 67, 67))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,34 +248,74 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
 
         if (filaSeleccionada != -1) { // Asegúrate de que una fila esté seleccionada
             DefaultTableModel modelo = (DefaultTableModel) jTableTipos.getModel();
-            modelo.removeRow(filaSeleccionada); // Eliminar la fila del modelo
-            tHabitacionController.borrarTipoDeHabitacion(jTableTipos.getSelectedRow());
+            Object cellValue = modelo.getValueAt(jTableTipos.getSelectedRow(), 0);
             
-        lblError.setText("Tipo de habitacion removido exitosamente");//Mensaje para verificarle al usuario la accion realizada
-         } else {
-         lblError.setText("Debes seleccionar una fila para eliminar.");
-        }
+            modelo.removeRow(filaSeleccionada); // Eliminar la fila del modelo
+            
+            if (cellValue instanceof Integer) {
+                int intValor = (Integer) cellValue;
+                tHabitacionController.borrarTipoDeHabitacion(intValor);
+                tHabitacionController.refrescarTabla();
+                lblError.setText("Tipo de habitacion removido exitosamente");//Mensaje de exito
+            }else {
+                lblError.setText("Debes seleccionar una fila para eliminar");//Mensaje de error
+            }
     }//GEN-LAST:event_btnEliminarTipoActionPerformed
 
+}
     private void btnActualizarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarTipoActionPerformed
+       int filaSeleccionada = jTableTipos.getSelectedRow();
+
+    //Verificar que la fila si exista
+    if (filaSeleccionada != -1) {
         
-        
-        //Error si no hay nombre
-        if(txtNombreTipoDeHabitacion.getText().length() == 0){
-            
+        if (txtNombreTipoDeHabitacion.getText().length() == 0) {
             lblError.setText("Debes ingresar un nombre");
-        //Error si no hay precio
-        }else if(txtPrecioTipoHabitacion.getText().length() == 0){
-            
+                                                                            //Error al no haber nada en los espacios
+        } else if (txtPrecioTipoHabitacion.getText().length() == 0) {
             lblError.setText("Debes ingresar un precio");
+        } else {
             
-        }else{
+            int id = (int) jTableTipos.getValueAt(filaSeleccionada, 0);  //Obtener la id del objeto para modificarlo
             
-            String nuevoTipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
-            int nuevoPrecioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText());
             
+            String nuevoNombreTipoDeHabitacion = txtNombreTipoDeHabitacion.getText();
+            int nuevoPrecioTipoHabitacion = Integer.parseInt(txtPrecioTipoHabitacion.getText()); 
+            
+            
+            TipoDeHabitaciones nuevoTipoHabitacion = new TipoDeHabitaciones(id, nuevoNombreTipoDeHabitacion, nuevoPrecioTipoHabitacion);
+            
+            
+            tHabitacionController.actualizarTipoDeHabitacion(id, nuevoTipoHabitacion);
+
+            
+            ((DefaultTableModel) jTableTipos.getModel()).setValueAt(nuevoNombreTipoDeHabitacion, filaSeleccionada, 1); 
+            ((DefaultTableModel) jTableTipos.getModel()).setValueAt(nuevoPrecioTipoHabitacion, filaSeleccionada, 2); 
+            
+            
+            
+            lblError.setText("Tipo de habitación actualizado exitosamente");//Mensaje de exito
         }
+        }else{
+            lblError.setText("Debes seleccionar una fila para actualizar"); //Mensaje de error
+    }
     }//GEN-LAST:event_btnActualizarTipoActionPerformed
+
+    private void jTableTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTiposMouseClicked
+        //Facilitar la seleccion en el jTable
+        int filaSeleccionada = jTableTipos.getSelectedRow();
+        //Verificar que la fila si exista
+        if (filaSeleccionada != -1) {
+        
+            //Convertir los objetos al tipo de dato deseado
+            String nombre = (String) jTableTipos.getValueAt(filaSeleccionada, 1); 
+            int precio = (Integer) jTableTipos.getValueAt(filaSeleccionada, 2); 
+        
+        
+            txtNombreTipoDeHabitacion.setText(nombre);
+            txtPrecioTipoHabitacion.setText(String.valueOf(precio)); //Convertir int a String para el TextField
+    }
+    }//GEN-LAST:event_jTableTiposMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
