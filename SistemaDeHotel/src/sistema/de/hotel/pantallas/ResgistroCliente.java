@@ -36,7 +36,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
         txtCedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtAlergia = new javax.swing.JTextField();
-        txtNacimiento = new javax.swing.JTextField();
+        txtIngreso = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMedicamentos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -46,6 +46,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblError = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtAviso = new javax.swing.JLabel();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -75,7 +76,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
         jLabel7.setText("El cliente necesita un soporte de medicamentos?");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Fecha de nacimiento del Cliente, ejemplo: (01/11/2024)");
+        jLabel5.setText("Fecha de ingreso del Cliente, ejemplo: (01/11/2024)");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Cedula:");
@@ -99,11 +100,10 @@ public class ResgistroCliente extends javax.swing.JFrame {
                 .addComponent(txtMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(215, 215, 215))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(lblError)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lblError))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,7 +115,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
                         .addComponent(txtAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,7 +155,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -166,7 +166,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
                 .addComponent(txtMedicamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblError)
-                .addGap(69, 69, 69))
+                .addGap(77, 77, 77))
         );
 
         jButton1.setBackground(new java.awt.Color(0, 255, 0));
@@ -185,19 +185,25 @@ public class ResgistroCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(txtAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -207,7 +213,7 @@ public class ResgistroCliente extends javax.swing.JFrame {
         // Agregar Cliente 
    Cliente cl = new Cliente(
            Integer.parseInt(txtCedula.getText()), 
-           txtNombre.getText(),txtEmail.getText(), txtNacimiento.getText(), txtAlergia.getText(), txtMedicamentos.getText());  
+           txtNombre.getText(),txtEmail.getText(), txtIngreso.getText(), txtAlergia.getText(), txtMedicamentos.getText());  
    
         clientecont.agregarCliente(cl);
         
@@ -215,9 +221,23 @@ public class ResgistroCliente extends javax.swing.JFrame {
         txtCedula.setText("");
         txtNombre.setText("");
         txtEmail.setText("");
-        txtNacimiento.setText("");
+        txtIngreso.setText("");
         txtAlergia.setText("");
         txtMedicamentos.setText("");
+        
+        if(txtCedula.getText().length()== 0){
+            txtAviso.setText("Debes introducir la cedula ");
+        }else if (txtNombre.getText().length()== 0) {
+            txtAviso.setText("Debes introducir el nombre");
+        }else if (txtEmail.getText().length()== 0){
+            txtAviso.setText("Debes introducir el email ");
+        } else if (txtIngreso.getText().length()==0){
+            txtAviso.setText("Debes introducir la fecha de naciemiento");  
+        } else if (txtAlergia.getText().length()== 0){
+            txtAviso.setText("Debes introducir si el cliente tiene alergias o no ");
+        } else if (txtMedicamentos.getText().length()==0){
+            txtAviso.setText("Debes introducir si el cliente cuenta con requerimientos de medicacion o no  ");
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -269,10 +289,11 @@ public class ResgistroCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblError;
     private javax.swing.JTextField txtAlergia;
+    private javax.swing.JLabel txtAviso;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIngreso;
     private javax.swing.JTextField txtMedicamentos;
-    private javax.swing.JTextField txtNacimiento;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
