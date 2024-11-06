@@ -16,3 +16,5 @@ SistemaDeHotel/nbproject/private/private.xml
 SistemaDeHotel/nbproject/private/private.xml
 SistemaDeHotel/nbproject/private/private.xml
 SistemaDeHotel/nbproject/private/private.properties
+SistemaDeHotel/src/sistema/de/hotel/pantallas/RegistrarTipoDeHabitacion.java
+SistemaDeHotel/tipodehabitaciones.dat
