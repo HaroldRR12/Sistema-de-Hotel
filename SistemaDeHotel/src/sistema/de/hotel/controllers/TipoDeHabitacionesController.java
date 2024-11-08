@@ -95,8 +95,10 @@ public class TipoDeHabitacionesController {
             break; 
         }
     }
-    if (!encontrado) {
-        System.out.println("ID no válido");
+        if (!encontrado) {
+            System.out.println("ID no válido");
+        }else{
+            inicializarIdContador(); //Reajustar las ID;
         }
     }
     //Buscar tipo de habitacion

@@ -6,6 +6,10 @@ package sistema.de.hotel.pantallas;
 
 import java.awt.Component;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+import sistema.de.hotel.Habitaciones;
+import sistema.de.hotel.controllers.HabitacionesController;
+import sistema.de.hotel.controllers.TipoDeHabitacionesController;
 
 /**
  *
@@ -13,12 +17,18 @@ import javax.swing.DefaultListModel;
  */
 public class RegistrarHabitacion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RegistrarHabitacion
-     */
+    TipoDeHabitacionesController thc = new TipoDeHabitacionesController();
+    HabitacionesController hc = new HabitacionesController();
+    
+    DefaultTableModel tm = new DefaultTableModel();
+    
+    int id;
+    
     public RegistrarHabitacion() {
         initComponents();
-        
+
+        jTableTipos.setModel(new javax.swing.table.DefaultTableModel(thc.refrescarTabla(),new String [] {"ID", "Nombre", "Precio"}));
+        jTableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(hc.refrescarTabla(),new String [] {"Numero", "Tipo", "Precio", "Estado"}));
         
     }
 
@@ -42,6 +52,8 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
         btnActualizar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableHabitaciones = new javax.swing.JTable();
+        cbOcupado = new javax.swing.JCheckBox();
+        lblError = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("REGISTRO DE HABITACIONES");
@@ -59,15 +71,22 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
         jLabel3.setText("Tipo de habitacion:");
 
         btnCrearHabitacion.setText("Crear");
+        btnCrearHabitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearHabitacionActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         jTableTipos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Tipo", "Precio"
@@ -76,19 +95,28 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTableTipos);
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         jTableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Numero", "Tipo", "Precio", "Estado"
             }
         ));
+        jTableHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableHabitacionesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableHabitaciones);
+
+        cbOcupado.setText("Ocupado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,9 +125,6 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(131, 131, 131)
-                            .addComponent(btnCrearHabitacion))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -107,30 +132,36 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
                             .addGap(82, 82, 82)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(118, 118, 118)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cbOcupado)
+                                .addComponent(btnCrearHabitacion))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(txtNumHabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnActualizar))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                    .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
             .addGroup(layout.createSequentialGroup()
                 .addGap(285, 285, 285)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -138,17 +169,21 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbOcupado)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnActualizar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnEliminar)
+                                .addComponent(btnCrearHabitacion))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnActualizar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEliminar)
-                        .addComponent(btnCrearHabitacion)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -156,11 +191,114 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumHabitacionActionPerformed
 
+    private void btnCrearHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearHabitacionActionPerformed
+
+            int filaSeleccionada = jTableTipos.getSelectedRow();
+            if (filaSeleccionada != -1){
+              if(txtNumHabitacion.getText().length() == 0){
+                  lblError.setText("Debes ingresar un numero de habitacion");
+              }else{
+                int numHabitacion = Integer.parseInt(txtNumHabitacion.getText());
+                // Obtener el nombre y precio de la tabla de tipos
+                String tipoH = String.valueOf(((DefaultTableModel) jTableTipos.getModel()).getValueAt(filaSeleccionada, 1));
+                int precio = (int) ((DefaultTableModel) jTableTipos.getModel()).getValueAt(filaSeleccionada, 2);
+                //Revisar la checkbox por si la habitacion esta ocupada
+                String ocupado = cbOcupado.isSelected() ? "Ocupado" : "Desocupado";
+                
+                Habitaciones habitacion = new Habitaciones(numHabitacion, ocupado, tipoH, precio);
+                // Añadir el objeto al archivo
+                hc.agregarHabitacion(habitacion);
+                //Refrescar tabla
+                jTableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(hc.refrescarTabla(),new String [] {"Numero", "Tipo", "Precio", "Estado"}));
+                // Limpiar las casillas de texto
+                txtNumHabitacion.setText("");
+
+                // Confirmar la acción al usuario
+                lblError.setText("Tipo de habitación agregado exitosamente");
+            }
+        }
+    }//GEN-LAST:event_btnCrearHabitacionActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int filaSeleccionada = jTableHabitaciones.getSelectedRow();
+
+        if (filaSeleccionada != -1) { //Asegurar la seleccion
+            
+            DefaultTableModel modelo = (DefaultTableModel) jTableHabitaciones.getModel();
+            
+            Object cellValue = modelo.getValueAt(jTableHabitaciones.getSelectedRow(), 0);//Obtener el numero de habitacion o "id" de la celda
+            
+            modelo.removeRow(filaSeleccionada); // Eliminar la fila del modelo
+            
+            if (cellValue instanceof Integer) {
+                //Elimina la habitacion de la tabla y del archivo
+                int intValor = (Integer) cellValue;
+                hc.borrarHabitacion(intValor);
+                hc.refrescarTabla();
+                lblError.setText("Habitacion removida exitosamente");//Mensaje de exito
+                txtNumHabitacion.setText("");
+            }else {
+                lblError.setText("Debes seleccionar una fila para eliminar");//Mensaje de error
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    
+    
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        int filaSeleccionadaH = jTableHabitaciones.getSelectedRow();
+        int filaSeleccionadaT = jTableTipos.getSelectedRow();
+        if (filaSeleccionadaH != -1) {
+            if (txtNumHabitacion.getText().length() == 0) {
+                lblError.setText("Debes ingresar un número de habitación");
+            } else {
+                // Obtener la "id" del objeto para modificarlo
+                int idH = (int) jTableHabitaciones.getValueAt(filaSeleccionadaH, 0); 
+                int nuevoNumHabitacion = Integer.parseInt(txtNumHabitacion.getText());
+
+                // Obtener el nombre y precio de la tabla de habitaciones
+                String nuevoTipoH = String.valueOf(((DefaultTableModel) jTableTipos.getModel()).getValueAt(filaSeleccionadaT, 1));
+                int nuevoPrecio = (int) ((DefaultTableModel) jTableTipos.getModel()).getValueAt(filaSeleccionadaT, 2);
+
+                // Revisar la checkbox por si la habitación está ocupada
+                String nuevoOcupado = cbOcupado.isSelected() ? "Ocupado" : "Desocupado";
+            
+                // Crear una nueva instancia de la habitación con el estado actualizado
+                Habitaciones nuevaHabitacion = new Habitaciones(nuevoNumHabitacion, nuevoOcupado, nuevoTipoH, nuevoPrecio);
+            
+                // Actualizar el objeto en el archivo usando el ID
+                hc.actualizarHabitacion(idH, nuevaHabitacion);
+            
+                ((DefaultTableModel) jTableHabitaciones.getModel()).setValueAt(nuevoNumHabitacion, filaSeleccionadaH, 0);
+                ((DefaultTableModel) jTableHabitaciones.getModel()).setValueAt(nuevoTipoH, filaSeleccionadaH, 1); 
+                ((DefaultTableModel) jTableHabitaciones.getModel()).setValueAt(nuevoPrecio, filaSeleccionadaH, 2); 
+                ((DefaultTableModel) jTableHabitaciones.getModel()).setValueAt(nuevoOcupado, filaSeleccionadaH, 3);
+                
+                
+                // Confirmación visual
+                lblError.setText("Habitación actualizada exitosamente");
+        }
+    }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void jTableHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableHabitacionesMouseClicked
+        //Facilitar la seleccion en el jTable
+        int filaSeleccionada = jTableHabitaciones.getSelectedRow();
+        //Verificar que la fila si exista
+        if (filaSeleccionada != -1) {      
+            //Convertir los objetos al tipo de dato deseado
+            int numH = (Integer) jTableHabitaciones.getValueAt(filaSeleccionada, 0); 
+    
+            txtNumHabitacion.setText(String.valueOf(numH)); //Convertir int a String para el TextField
+        }
+    }//GEN-LAST:event_jTableHabitacionesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCrearHabitacion;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JCheckBox cbOcupado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -168,6 +306,7 @@ public class RegistrarHabitacion extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableHabitaciones;
     private javax.swing.JTable jTableTipos;
+    private javax.swing.JLabel lblError;
     private javax.swing.JTextField txtNumHabitacion;
     // End of variables declaration//GEN-END:variables
 }

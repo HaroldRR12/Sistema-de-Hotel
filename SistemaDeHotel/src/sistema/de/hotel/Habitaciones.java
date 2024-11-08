@@ -13,13 +13,15 @@ import java.io.Serializable;
 public class Habitaciones implements Serializable{
     
     private int numH;
-    private boolean ocupado;
-    private int tipoDeH;
+    private String ocupado;
+    private String tipoDeH;
+    private int precio;
 
-    public Habitaciones(int numH, boolean ocupado, int tipoDeH) {
+    public Habitaciones(int numH, String ocupado, String tipoDeH, int precio) {
         this.numH = numH;
         this.ocupado = ocupado;
         this.tipoDeH = tipoDeH;
+        this.precio = precio;
     }
 
     public int getNumH() {
@@ -30,22 +32,32 @@ public class Habitaciones implements Serializable{
         this.numH = numH;
     }
 
-    public boolean getOcupado() {
+    public String getOcupado() {
         return ocupado;
     }
 
-    public void setOcupado(boolean ocupado) {
+    public void setOcupado(String ocupado) {
         this.ocupado = ocupado;
+    }
+
+    public String getTipoDeH() {
+        return tipoDeH;
+    }
+
+    public void setTipoDeH(String tipoDeH) {
+        this.tipoDeH = tipoDeH;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     @Override
     public String toString() {
-        return "Habitaciones{" + "numH=" + numH + ", ocupado=" + ocupado + '}';
+        return "Habitaciones{" + "numH=" + numH + ", ocupado=" + ocupado + ", tipoDeH=" + tipoDeH + ", precio=" + precio + '}';
     }
-
-    int getidCliente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
 }

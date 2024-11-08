@@ -36,6 +36,7 @@ public class Menu extends javax.swing.JFrame {
         jCheckBoxMenuItem7 = new javax.swing.JCheckBoxMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem8 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
@@ -107,6 +108,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jCheckBoxMenuItem3);
 
+        jCheckBoxMenuItem8.setSelected(true);
+        jCheckBoxMenuItem8.setText("Habitaciones");
+        jCheckBoxMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jCheckBoxMenuItem8);
+
         jCheckBoxMenuItem4.setSelected(true);
         jCheckBoxMenuItem4.setText("Adicionales ");
         jMenu2.add(jCheckBoxMenuItem4);
@@ -154,6 +164,13 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jCheckBoxMenuItem3ActionPerformed
 
+    private void jCheckBoxMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem8ActionPerformed
+        RegistrarHabitacion RH = new RegistrarHabitacion();
+        this.setContentPane(RH);
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_jCheckBoxMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +214,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem6;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem7;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem8;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
