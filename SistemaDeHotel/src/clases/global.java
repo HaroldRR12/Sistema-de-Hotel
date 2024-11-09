@@ -30,7 +30,7 @@ public class global {
      * utilizamos el File para poder crear un archivo 
      * @return archivo
      */
-    public void archivo(reservacion clientes) throws IOException {
+    public void archivo(reservacion reservaciones) throws IOException {
 
         File archivo = new File("DB_reserva.txt");
         FileWriter escribir;
@@ -40,10 +40,10 @@ public class global {
 
             escribir = new FileWriter(archivo, true);
             linea = new PrintWriter(escribir);
-            linea.print("|" + clientes.getId());
-            linea.print("|" + clientes.getIdAbitacion());
-            linea.print("|" + clientes.getNombre());
-            linea.print("|" + clientes.getUsuario());
+            linea.print("|" + reservaciones.getId());
+            linea.print("|" + reservaciones.getIdAbitacion());
+            linea.print("|" + reservaciones.getNombre());
+            linea.print("|" + reservaciones.getUsuario());
 
             linea.close();
             escribir.close();
@@ -52,10 +52,10 @@ public class global {
             escribir = new FileWriter(archivo, true);
             linea = new PrintWriter(escribir);
 
-            linea.print("|" + clientes.getId());
-            linea.print("|" + clientes.getIdAbitacion());
-            linea.print("|" + clientes.getNombre());
-            linea.print("|" + clientes.getUsuario());
+            linea.print("|" + reservaciones.getId());
+            linea.print("|" + reservaciones.getIdAbitacion());
+            linea.print("|" + reservaciones.getNombre());
+            linea.print("|" + reservaciones.getUsuario());
             
             linea.close();
             escribir.close();
