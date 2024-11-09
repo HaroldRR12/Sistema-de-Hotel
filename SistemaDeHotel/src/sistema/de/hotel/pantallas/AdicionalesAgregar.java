@@ -52,18 +52,19 @@ public AdicionalesAgregar() {
         btnSalir = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         lblError = new javax.swing.JLabel();
+        lblErrorr = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Lista de Adicionales");
 
         jTableAdicionales.setAutoCreateRowSorter(true);
         jTableAdicionales.setBackground(new java.awt.Color(204, 204, 255));
         jTableAdicionales.setBorder(new javax.swing.border.MatteBorder(null));
-        jTableAdicionales.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
-        jTableAdicionales.setForeground(new java.awt.Color(204, 255, 0));
+        jTableAdicionales.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTableAdicionales.setForeground(new java.awt.Color(0, 0, 0));
         jTableAdicionales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -85,9 +86,17 @@ public AdicionalesAgregar() {
         });
         jScrollPane1.setViewportView(jTableAdicionales);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 102));
         jLabel2.setText("Nombre de adicional");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 102));
         jLabel3.setText("Precio del adicional");
+
+        txtNombreAdicional.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtPrecioAdicional.setBackground(new java.awt.Color(204, 204, 204));
 
         btnAgregar.setText("Agregar");
         btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +105,6 @@ public AdicionalesAgregar() {
             }
         });
 
-        btnCargar.setText("Cargar");
         btnCargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCargarMouseClicked(evt);
@@ -121,46 +129,42 @@ public AdicionalesAgregar() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(226, 226, 226))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreAdicional)
-                            .addComponent(jLabel3)
-                            .addComponent(txtPrecioAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(btnAgregar)))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblErrorr)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreAdicional)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPrecioAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCargar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEliminar)
-                        .addGap(103, 103, 103)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalir)
                         .addGap(14, 14, 14))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblError)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblError)
+                    .addComponent(btnCargar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -169,16 +173,21 @@ public AdicionalesAgregar() {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPrecioAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(btnAgregar)))
-                .addGap(37, 37, 37)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblErrorr)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(142, 142, 142))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCargar)
-                    .addComponent(btnSalir)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblError)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCargar))
         );
 
         pack();
@@ -188,9 +197,9 @@ public AdicionalesAgregar() {
         // TODO add your handling code here:
          try {
         if (txtNombreAdicional.getText().isEmpty()) {
-            lblError.setText("Debe ingresar un nombre válido");
+            lblErrorr.setText("Debe ingresar un nombre válido");
         } else if (txtPrecioAdicional.getText().isEmpty()) {
-            lblError.setText("Debe ingresar un precio válido");
+            lblErrorr.setText("Debe ingresar un precio válido");
         } else {
             try {
                 int precioAdicional = Integer.parseInt(txtPrecioAdicional.getText());
@@ -204,13 +213,13 @@ public AdicionalesAgregar() {
                 txtNombreAdicional.setText("");
                 txtPrecioAdicional.setText("");
 
-                lblError.setText("Adicional agregado exitosamente");
+                lblErrorr.setText("Adicional agregado exitosamente");
             } catch (NumberFormatException e) {
-                lblError.setText("El precio debe ser un número válido");
+                lblErrorr.setText("El precio debe ser un número válido");
             }
         }
     } catch (Exception e) {
-        lblError.setText("Ocurrió un error inesperado");
+        lblErrorr.setText("Ocurrió un error inesperado");
     }
           
     }//GEN-LAST:event_btnAgregarMouseClicked
@@ -223,9 +232,9 @@ public AdicionalesAgregar() {
             tAdicionalController.eliminarAdicional(idToRemove);
 
             model.setDataVector(tAdicionalController.refrescarTabla(), new String[]{"Nombre", "Precio", "Id"});
-            lblError.setText("Adicional eliminado exitosamente");
+            lblErrorr.setText("Adicional eliminado exitosamente");
         } else {
-            lblError.setText("Debe seleccionar un adicional para eliminar");
+            lblErrorr.setText("Debe seleccionar un adicional para eliminar");
         }
     }//GEN-LAST:event_btnEliminarMouseClicked
 
@@ -233,9 +242,11 @@ public AdicionalesAgregar() {
         // TODO add your handling code here:
         model.setDataVector(tAdicionalController.refrescarTabla(), new String[]{"Nombre", "Precio", "Id"});
     }//GEN-LAST:event_btnCargarMouseClicked
-
+    
+    //Cerrar La ventana
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSalirMouseClicked
 
     /**
@@ -284,6 +295,7 @@ public AdicionalesAgregar() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAdicionales;
     private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblErrorr;
     private javax.swing.JTextField txtNombreAdicional;
     private javax.swing.JTextField txtPrecioAdicional;
     // End of variables declaration//GEN-END:variables
