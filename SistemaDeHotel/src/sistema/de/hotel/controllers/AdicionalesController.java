@@ -4,7 +4,7 @@
  */
 package sistema.de.hotel.controllers;
 
-import sistema.de.hotel.Adicionales;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import sistema.de.hotel.Adicionales;
 
 
 /**
@@ -38,10 +39,16 @@ public AdicionalesController(){
 
 
 
+//Generar un nuevo id 
+public int generarNuevoId() {
+    return idContador++; // Asigna el ID actual y luego incrementa
+}
+
 //Guardar Adicionales
 public void agregarAdicional(Adicionales tipo){
-       adicionalesLista.add(tipo);
-       guardarDatos();
+    tipo.setId(generarNuevoId()); // Asigna el ID consecutivo
+    adicionalesLista.add(tipo);
+    guardarDatos();
     }
 
 
@@ -77,35 +84,32 @@ public void actualizarAdicionales(int id, Adicionales nuevoAdicional) {
  
 
 
-//Generar un nuevo id 
-public int generarNuevoId() {
-        return idContador++;
-}
+
+
   
 
     
 // Eliminar Adicional
 public void eliminarAdicional(int id) {
         Iterator<Adicionales> iterator = adicionalesLista.iterator();
-        boolean encontrado = false;
+    boolean encontrado = false;
 
-        while (iterator.hasNext()) {
-            Adicionales ad = iterator.next();
+    while (iterator.hasNext()) {
+        Adicionales ad = iterator.next();
 
-            if (ad.getId() == id) {
-                iterator.remove();
-                encontrado = true;
-                guardarDatos();
-                System.out.println("Adicional eliminado");
-                break;
-            }
+        if (ad.getId() == id) {
+            iterator.remove();
+            encontrado = true;
+            guardarDatos();
+            System.out.println("Adicional eliminado");
+            break;
         }
+    }
 
-        if (!encontrado) {
-            System.out.println("ID no válido");
-        } else {
-            inicializarIdContador(); // Reajustar el contador de IDs
-        }
+    if (!encontrado) {
+        System.out.println("ID no válido");
+    }
+          
 }
     
     
@@ -145,38 +149,42 @@ public Object[][] refrescarTabla() {
 // Cargar datos desde el archivo
 private void cargarDatos() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
-            adicionalesLista = (List<Adicionales>) ois.readObject();
-        } catch (FileNotFoundException e) {
-            System.out.println("Archivo no encontrado, creando uno nuevo");
-            adicionalesLista = new ArrayList<>(); // Inicializar la lista si el archivo no existe
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        // Leer los datos de la lista y el contador de IDs
+        adicionalesLista = (List<Adicionales>) ois.readObject();
+        idContador = ois.readInt();  // Cargar el contador de IDs
+    } catch (FileNotFoundException e) {
+        System.out.println("Archivo no encontrado, creando uno nuevo");
+        adicionalesLista = new ArrayList<>(); // Inicializar la lista si el archivo no existe
+        idContador = 1; // Establecer el primer ID a 1
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
     }
     
 
  // Guardar datos en el archivo   
 private void guardarDatos() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-            oos.writeObject(adicionalesLista);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Guardar la lista de adicionales y el contador de IDs
+        oos.writeObject(adicionalesLista);
+        oos.writeInt(idContador); // Guardar el contador de IDs
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 }
     
      
      
 // Inicializar el contador de ID
 private void inicializarIdContador() {
-        int maxId = 0;
-
-        for (Adicionales ad : adicionalesLista) {
-            if (ad.getId() > maxId) {
-                maxId = ad.getId();
-            }
-        }
-
-        idContador = maxId + 1;
+       // Si la lista está vacía, se inicializa el contador en 1
+    if (adicionalesLista.isEmpty()) {
+        idContador = 1;
+    } else {
+        // Recorre la lista y encuentra el ID más alto.
+        int maxId = adicionalesLista.stream().mapToInt(Adicionales::getId).max().orElse(0);
+        idContador = maxId + 1;  // Establecer el siguiente ID
+    }
 }
 }
 

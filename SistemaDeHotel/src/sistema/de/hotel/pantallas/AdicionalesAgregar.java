@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import sistema.de.hotel.Adicionales;
 import sistema.de.hotel.controllers.AdicionalesController;
 
+
+
 /**
  *
  * @author otoniel
@@ -15,7 +17,7 @@ import sistema.de.hotel.controllers.AdicionalesController;
 public class AdicionalesAgregar extends javax.swing.JFrame {
     
 DefaultTableModel model;
-int id;
+
 AdicionalesController tAdicionalController = new AdicionalesController();
     
 
@@ -27,6 +29,8 @@ public AdicionalesAgregar() {
         initComponents();
         model = new DefaultTableModel(tAdicionalController.refrescarTabla(), new String[]{"Nombre", "Precio", "Id"});
         jTableAdicionales.setModel(model);
+        lblErrorr.setText("");  // Limpiar el error inicial
+        lblError.setText("");   // Limpiar el error inicial
 }
 
 
@@ -195,32 +199,37 @@ public AdicionalesAgregar() {
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         // TODO add your handling code here:
-         try {
-        if (txtNombreAdicional.getText().isEmpty()) {
-            lblErrorr.setText("Debe ingresar un nombre válido");
-        } else if (txtPrecioAdicional.getText().isEmpty()) {
-            lblErrorr.setText("Debe ingresar un precio válido");
-        } else {
-            try {
-                int precioAdicional = Integer.parseInt(txtPrecioAdicional.getText());
-                String nombreAdicional = txtNombreAdicional.getText();
-                int id = tAdicionalController.generarNuevoId();
+     try {
+            if (txtNombreAdicional.getText().isEmpty()) {
+                lblErrorr.setText("Debe ingresar un nombre válido");
+            } else if (txtPrecioAdicional.getText().isEmpty()) {
+                lblErrorr.setText("Debe ingresar un precio válido");
+            } else {
+                try {
+                    int precioAdicional = Integer.parseInt(txtPrecioAdicional.getText());
+                    if (precioAdicional <= 0) {
+                        lblErrorr.setText("El precio debe ser un número positivo");
+                    } else {
+                        String nombreAdicional = txtNombreAdicional.getText();
+                        int id = tAdicionalController.generarNuevoId();
 
-                Adicionales adicional = new Adicionales(nombreAdicional, precioAdicional, id);
-                tAdicionalController.agregarAdicional(adicional);
+                        Adicionales adicional = new Adicionales(nombreAdicional, precioAdicional, id);
+                        tAdicionalController.agregarAdicional(adicional);
 
-                model.setDataVector(tAdicionalController.refrescarTabla(), new String[]{"Nombre", "Precio", "Id"});
-                txtNombreAdicional.setText("");
-                txtPrecioAdicional.setText("");
+                        model.setDataVector(tAdicionalController.refrescarTabla(), new String[]{"Nombre", "Precio", "Id"});
+                        txtNombreAdicional.setText("");
+                        txtPrecioAdicional.setText("");
 
-                lblErrorr.setText("Adicional agregado exitosamente");
-            } catch (NumberFormatException e) {
-                lblErrorr.setText("El precio debe ser un número válido");
+                        lblErrorr.setText("Adicional agregado exitosamente");
+                    }
+                } catch (NumberFormatException e) {
+                    lblErrorr.setText("El precio debe ser un número válido");
+                }
             }
-        }
-    } catch (Exception e) {
-        lblErrorr.setText("Ocurrió un error inesperado");
-    }
+        } catch (Exception e) {
+            lblErrorr.setText("Ocurrió un error inesperado");
+        }   
+    
           
     }//GEN-LAST:event_btnAgregarMouseClicked
 
