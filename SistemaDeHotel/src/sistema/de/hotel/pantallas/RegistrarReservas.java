@@ -27,6 +27,8 @@ public class RegistrarReservas extends javax.swing.JFrame {
 
     public RegistrarReservas() {
         initComponents();
+        
+        txtid.setText(clase.Validacion_Ceros());
     }
 
     /**
