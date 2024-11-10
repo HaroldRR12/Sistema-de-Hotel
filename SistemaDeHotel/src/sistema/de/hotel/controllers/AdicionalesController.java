@@ -35,6 +35,8 @@ public AdicionalesController(){
     adicionalesLista = new ArrayList<>();
     cargarDatos();
     inicializarIdContador();
+    
+    
     }
 
 
@@ -149,13 +151,13 @@ public Object[][] refrescarTabla() {
 // Cargar datos desde el archivo
 private void cargarDatos() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
-        // Leer los datos de la lista y el contador de IDs
         adicionalesLista = (List<Adicionales>) ois.readObject();
-        idContador = ois.readInt();  // Cargar el contador de IDs
+        idContador = ois.readInt();
+        System.out.println("Datos cargados: " + adicionalesLista.size() + " adicionales encontrados.");
     } catch (FileNotFoundException e) {
         System.out.println("Archivo no encontrado, creando uno nuevo");
-        adicionalesLista = new ArrayList<>(); // Inicializar la lista si el archivo no existe
-        idContador = 1; // Establecer el primer ID a 1
+        adicionalesLista = new ArrayList<>();
+        idContador = 1;
     } catch (IOException | ClassNotFoundException e) {
         e.printStackTrace();
     }
