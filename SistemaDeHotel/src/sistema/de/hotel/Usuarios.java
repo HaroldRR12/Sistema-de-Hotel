@@ -10,8 +10,9 @@ package sistema.de.hotel;
  */
 public class Usuarios {
     private String usuario;
-    private String contraseña;
+    private String contrasena;
 
+    
     public String getUsuario() {
         return usuario;
     }
@@ -20,22 +21,22 @@ public class Usuarios {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     @Override
     public String toString() {
-        return "Usuarios{" + "usuario=" + usuario + ", contrase\u00f1a=" + contraseña + '}';
+        return "Usuarios{" + "usuario=" + usuario + ", contrase\u00f1a=" + contrasena + '}';
     }
 
-    public Usuarios(String usuario, String contraseña) {
+    public Usuarios(String usuario, String contrasena) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
     
 }

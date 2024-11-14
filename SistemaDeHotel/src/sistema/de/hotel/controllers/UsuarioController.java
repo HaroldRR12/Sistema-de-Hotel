@@ -22,20 +22,23 @@ import sistema.de.hotel.Usuarios;
  */
 public class UsuarioController {
  private static final String FILE_NAME = "usuario.dat";
-    private List<Usuarios> usuarios;
+    private List<Usuarios> usuarios = new ArrayList<Usuarios>() ;
+   
     
-    public boolean validarLogin(String usuario, String contrasena){
-        String usuarioCorrecto ="admin";
-        String contrasenaCorrecto ="12345";
-        return  usuario.equals(usuarioCorrecto) && contrasena.equals(contrasenaCorrecto);
-    }
+  
     public UsuarioController(){
-    usuarios = new ArrayList();
+
     cargarDatos();
     }
     
+       public boolean validarLogin(String usuario, String contrasena){
+        String usuarioCorrecto ="admin";
+        String contrasenaCorrecto ="12345";
+        return  usuario.equals(usuarioCorrecto) && contrasena.equals(contrasenaCorrecto);
+       }
+    
     public void agregarUsuario(Usuarios user){
-        usuarios.add(user);
+        usuarios.add(user );
         guardarDatos();
     }
      private void cargarDatos(){
