@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jerem
+ * @author User
  */
 public class RegistrarReservas extends javax.swing.JFrame {
 
@@ -27,6 +27,8 @@ public class RegistrarReservas extends javax.swing.JFrame {
 
     public RegistrarReservas() {
         initComponents();
+        
+        txtid.setText(clase.Validacion_Ceros());
     }
 
     /**
