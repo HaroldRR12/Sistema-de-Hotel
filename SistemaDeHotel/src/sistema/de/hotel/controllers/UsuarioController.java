@@ -22,24 +22,29 @@ import sistema.de.hotel.Usuarios;
  */
 public class UsuarioController {
  private static final String FILE_NAME = "usuario.dat";
-    private List<Usuarios> usuarios = new ArrayList<Usuarios>() ;
-   
+ List<Usuarios> usuarios;
+  
     
   
     public UsuarioController(){
-
+    usuarios = new ArrayList<Usuarios>();
     cargarDatos();
+    if (usuarios.isEmpty()){
+        usuarios.add(new Usuarios("admin","12345"));
+        guardarDatos();
+    }
     }
     
-       public boolean validarLogin(String usuario, String contrasena){
-        String usuarioCorrecto ="admin";
-        String contrasenaCorrecto ="12345";
-        return  usuario.equals(usuarioCorrecto) && contrasena.equals(contrasenaCorrecto);
-       }
+    
     
     public void agregarUsuario(Usuarios user){
-        usuarios.add(user );
+        usuarios.add(user);
         guardarDatos();
+    }
+    
+    
+    public List<Usuarios> obtenerUsuario(){
+        return usuarios;
     }
      private void cargarDatos(){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))){
@@ -58,4 +63,5 @@ public class UsuarioController {
         }
         
          }
+     
 }

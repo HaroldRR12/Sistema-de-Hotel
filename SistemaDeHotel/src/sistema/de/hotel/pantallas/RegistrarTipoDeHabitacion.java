@@ -319,7 +319,7 @@ public class RegistrarTipoDeHabitacion extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearTipoActionPerformed
 
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarTipo;
     private javax.swing.JButton btnCrearTipo;
