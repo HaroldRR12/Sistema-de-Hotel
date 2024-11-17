@@ -4,11 +4,13 @@
  */
 package sistema.de.hotel;
 
+import java.io.Serializable;
+
 /**
  *
  * @author CALUFA
  */
-public class Usuarios {
+public class Usuarios implements Serializable {
     private String usuario;
     private String contrasena;
 
