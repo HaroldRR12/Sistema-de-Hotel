@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Handar/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/pantallas/Menu.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/pantallas/RegistrarHabitacion.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/Restaurante.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/controllers/ClienteController.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/TipoDeHabitaciones.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/pantallas/Menu.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/pantallas/Listar_Reservas.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/pantallas/Restaurante.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/pantallas/ResgistroCliente.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/controllers/HabitacionesController.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/controllers/InicioController.java</file>
+            <file>file:/C:/Users/2022/Documents/GitHub/Sistema-de-Hotel/SistemaDeHotel/src/sistema/de/hotel/controllers/RestauranteController.java</file>
         </group>
     </open-files>
 </project-private>
