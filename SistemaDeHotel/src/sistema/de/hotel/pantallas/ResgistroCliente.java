@@ -17,11 +17,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ResgistroCliente extends javax.swing.JFrame {
     DefaultTableModel tm = new DefaultTableModel();
-    ClienteController ClienteController = new ClienteController();
+    ClienteController clienteController = new ClienteController();
 
     public ResgistroCliente() {
         initComponents();
-        
         
         // Se establece el modelo de la tabla con los datos iniciales
        
@@ -209,66 +208,69 @@ public class ResgistroCliente extends javax.swing.JFrame {
     private void RegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarMouseClicked
          StringBuilder errores = new StringBuilder();
 
-        // Validaciones
-        if (txtCedula.getText().trim().isEmpty()) {
-            errores.append("Cédula requerida.\n");
-        }
-        if (txtNombre.getText().trim().isEmpty()) {
-            errores.append("Nombre requerido.\n");
-        }
-        if (txtEmail.getText().trim().isEmpty()) {
-            errores.append("Email requerido.\n");
-        }
-        if (txtIngreso.getText().trim().isEmpty()) {
-            errores.append("Fecha de ingreso requerida.\n");
-        }
-        if (txtAlergia.getText().trim().isEmpty()) {
-            errores.append("Especifica alergias.\n");
-        }
-        if (txtMedicamentos.getText().trim().isEmpty()) {
-            errores.append("Especifica medicamentos.\n");
-        }
-
-        if (errores.length() > 0) {
-            txtAviso.setText("<html>" + errores.toString().replace("\n", "<br>") + "</html>");
-            return;
-        }
-
-        try {
-            Cliente cliente = new Cliente(
-                txtCedula.getText().trim(),
-                txtNombre.getText().trim(),
-                txtEmail.getText().trim(),
-                txtAlergia.getText().trim(),
-                txtMedicamentos.getText().trim(),
-                txtIngreso.getText().trim()
-            );
-
-            if (clienteController.agregarCliente(cliente)) {
-                txtAviso.setText("Cliente registrado correctamente.");
-                limpiarCampos();
-                actualizarListaClientes();
-            } else {
-                txtAviso.setText("Error: No se pudo registrar el cliente.");
-            }
-        } catch (Exception e) {
-            txtAviso.setText("Error en el registro: " + e.getMessage());
-        }
+    // Validar los campos obligatorios
+    if (txtCedula.getText().trim().isEmpty()) {
+        errores.append("Debes introducir la cédula.\n");
+    }
+    if (txtNombre.getText().trim().isEmpty()) {
+        errores.append("Debes introducir el nombre.\n");
+    }
+    if (txtEmail.getText().trim().isEmpty()) {
+        errores.append("Debes introducir el email.\n");
+    }
+    if (txtIngreso.getText().trim().isEmpty()) {
+        errores.append("Debes introducir la fecha de ingreso.\n");
+    }
+    if (txtAlergia.getText().trim().isEmpty()) {
+        errores.append("Debes especificar si el cliente tiene alergias o no.\n");
+    }
+    if (txtMedicamentos.getText().trim().isEmpty()) {
+        errores.append("Debes especificar si el cliente necesita medicamentos o no.\n");
     }
 
-    private void limpiarCampos() {
-        txtCedula.setText("");
-        txtNombre.setText("");
-        txtEmail.setText("");
-        txtIngreso.setText("");
-        txtAlergia.setText("");
-        txtMedicamentos.setText("");
+    // Si hay errores, mostrarlo y salir
+    if (errores.length() > 0) {
+        txtAviso.setText("<html>" + errores.toString().replace("\n", "<br>") + "</html>");
+        return;
     }
 
-    private void actualizarListaClientes() {
-        // Aquí deberías notificar al JFrame de ListaClientes que actualice los datos
-        ListaClientes listaClientesFrame = new ListaClientes();
-        listaClientesFrame.cargarDatos();
+    // Procesar los datos del cliente
+    try {
+        String cedula =(txtCedula.getText().trim());
+        String nombre = txtNombre.getText().trim();
+        String email = txtEmail.getText().trim();
+        String ingreso = txtIngreso.getText().trim();
+        String alergias = txtAlergia.getText().trim();
+        String medicamentos = txtMedicamentos.getText().trim();
+
+        // Crear un nuevo cliente
+        Cliente cliente = new Cliente(cedula, nombre, email, ingreso, alergias, medicamentos);
+
+        // Intentar agregar el cliente al controlador
+        boolean agregado = clienteController.agregarCliente(cliente);
+        if (agregado) {
+            txtAviso.setText("El cliente se registró correctamente.");
+            limpiarCampos();
+
+           
+            clienteController.actualizarCliente(cedula, nombre, email, ingreso, alergias, medicamentos); 
+        } else {
+            txtAviso.setText("Error al registrar el cliente. Intenta de nuevo.");
+        }
+    } catch (NumberFormatException e) {
+        txtAviso.setText("La cédula debe ser un número válido.");
+    }
+}
+
+// Método para limpiar los campos del formulario
+private void limpiarCampos() {
+    txtCedula.setText("");
+    txtNombre.setText("");
+    txtEmail.setText("");
+    txtIngreso.setText("");
+    txtAlergia.setText("");
+    txtMedicamentos.setText("");
+
     }//GEN-LAST:event_RegistrarMouseClicked
 
     

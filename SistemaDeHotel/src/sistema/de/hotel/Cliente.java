@@ -12,7 +12,8 @@ import java.io.Serializable;
  * @author Stevef
  */
 public class Cliente implements Serializable {
-    private static final long serialVersionUID = 2643686995613128620L;
+    private static final long serialVersionUID = 1L;
+   
 
     // Variables
     private String cedula;
@@ -92,9 +93,9 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return String.format(
-            "Cliente [Cédula=%s, Nombre=%s, Email=%s, Ingreso=%s, Alergias=%s, Medicamentos=%s]",
-            cedula, nombre, email, ingreso, alergias, medicamentos
-        );
+        return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", email=" + email + ", ingreso=" + ingreso + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
     }
+
+    
+    
 }

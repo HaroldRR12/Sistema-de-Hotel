@@ -4,6 +4,8 @@
  */
 package sistema.de.hotel.controllers;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,6 +18,8 @@ import java.util.Iterator;
 import java.util.Optional;
 import sistema.de.hotel.Cliente;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 
 /**
@@ -25,7 +29,7 @@ import java.io.File;
 public class ClienteController {
     
     
-       private static final String FILE_NAME = "cliente.dat";
+        private static final String FILE_NAME = "cliente.dat";
     private List<Cliente> clientes;
     
     // Constructor
@@ -38,16 +42,15 @@ public class ClienteController {
     
     // Método para agregar un cliente a la lista y guardar los datos
     public boolean agregarCliente(Cliente cliente) {
-    if (clientes.stream().anyMatch(c -> c.getCedula().equals(cliente.getCedula()))) {
-        System.out.println("El cliente con la cedula numero: " + cliente.getCedula() + " ya existe.");
-        return false; // No se pudo agregar porque ya existe
-    } else {
-        clientes.add(cliente);
-        guardarDatos();
-        return true; // Cliente agregado con éxito
+    File archivo = new File(FILE_NAME);
+    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+        bw.write(cliente.toString()); // Reemplaza con el formato de salida que uses
+        bw.newLine();
+        return true;
+    } catch (IOException e) {
+        System.err.println("Error al guardar el cliente: " + e.getMessage());
+        return false;
     }
-
-
 }
     
     
@@ -58,26 +61,26 @@ public class ClienteController {
     }
     
     
-      // Actualizar los datos de un cliente
+     
             
      public boolean actualizarCliente(String cedula, String nombre, String email, String ingreso, String alergias, String medicamentos) {
     for (int i = 0; i < clientes.size(); i++) {
-        if (clientes.get(i).getCedula().equals(cedula)) { // Usa equals para comparar las cédulas
-            // Crear un nuevo cliente con los datos actualizados
+        if (clientes.get(i).getCedula().equals(cedula)) { 
+            
             Cliente clienteActualizado = new Cliente(cedula, nombre, email, ingreso, alergias, medicamentos);
-            clientes.set(i, clienteActualizado); // Reemplazar el cliente en la lista
-            guardarDatos(); // Guardar los datos actualizados en el archivo
-            return true; // Indicar que la actualización fue exitosa
+            clientes.set(i, clienteActualizado); 
+            guardarDatos(); 
+            return true; 
         }
     }
     System.out.println("No se encontró cliente con el número de cédula " + cedula);
-    return false; // Si no se encuentra el cliente
+    return false; 
 }
 
    public boolean borrarCliente(String cedula) {
     Iterator<Cliente> iterator = clientes.iterator();
     while (iterator.hasNext()) {
-        if (iterator.next().getCedula().equals(cedula)) { // Usa equals para comparar strings
+        if (iterator.next().getCedula().equals(cedula)) { 
             iterator.remove();
             guardarDatos();     
             return true; 
@@ -110,19 +113,15 @@ public class ClienteController {
     }
     
     
-    private void cargarDatos() {
+   public void cargarDatos() {
     File archivo = new File(FILE_NAME);
-    if (archivo.exists()) {
-        archivo.delete();  // Elimina el archivo existente
-        System.out.println("Archivo anterior eliminado.");
+    if (!archivo.exists()) {
+        System.out.println("El archivo no existe. No hay datos que cargar.");
+        return;
     }
 
-        
-        
-        
-        
-    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
-        clientes = (List<Cliente>) ois.readObject();  // Deserializa los objetos y asigna a la lista
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+        clientes = (List<Cliente>) ois.readObject(); // Carga la lista de clientes
     } catch (FileNotFoundException e) {
         System.out.println("Archivo no encontrado, creando uno nuevo.");
     } catch (IOException | ClassNotFoundException e) {
@@ -131,13 +130,13 @@ public class ClienteController {
 }
 
     
-    private void guardarDatos() {
+    public void guardarDatos() {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-        oos.writeObject(clientes); // Guardar la lista de clientes en el archivo
+        oos.writeObject(clientes); // Guarda toda la lista de clientes
     } catch (IOException e) {
-        e.printStackTrace();
+        System.err.println("Error al guardar los datos: " + e.getMessage());
     }
-}   
+}
     
     
 }
