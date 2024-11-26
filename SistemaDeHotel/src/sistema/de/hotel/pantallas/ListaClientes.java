@@ -3,20 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package sistema.de.hotel.pantallas;
-
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import sistema.de.hotel.controllers.ClienteController;
+import sistema.de.hotel.Cliente;        
 /**
  *
  * @author Stevef
  */
 public class ListaClientes extends javax.swing.JFrame {
-
+private DefaultTableModel tableModel; // Modelo de la tabla
+    private ClienteController clienteController; // Controlador de clientes
+    private boolean editando; // Variable para controlar si se está en modo edición
+    private int filaSeleccionada; //
+    
     /**
      * Creates new form ListaClientes
      */
     public ListaClientes() {
+         clienteController = new ClienteController();
         initComponents();
+         cargarDatos();
+         editando = false;
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,6 +39,10 @@ public class ListaClientes extends javax.swing.JFrame {
 
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableTipos = new javax.swing.JTable();
+        Guardar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,41 +58,200 @@ public class ListaClientes extends javax.swing.JFrame {
             new String [] {
                 "Cedula", "Nombre", "Email", "Ingreso", "Alergias", "Medicamentos"
             }
-        ));
-        jTableTipos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableTiposMouseClicked(evt);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
         jScrollPane4.setViewportView(jTableTipos);
+
+        Guardar.setBackground(new java.awt.Color(0, 255, 0));
+        Guardar.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        Guardar.setForeground(new java.awt.Color(0, 0, 0));
+        Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setBackground(new java.awt.Color(255, 0, 0));
+        Eliminar.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        Eliminar.setForeground(new java.awt.Color(0, 0, 0));
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        Editar.setBackground(new java.awt.Color(255, 255, 0));
+        Editar.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        Editar.setForeground(new java.awt.Color(0, 0, 0));
+        Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTableTiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTiposMouseClicked
+     
+    private void habilitarEdicion() {
+        filaSeleccionada = jTableTipos.getSelectedRow();
 
-        int sr = jTableTipos.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            editando = true;
+            for (int i = 0; i < jTableTipos.getColumnCount(); i++) {
+                tableModel.isCellEditable(filaSeleccionada, i);
+            }
+            Guardar.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "Puedes editar la fila seleccionada. No olvides guardar los cambios.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un cliente para editar.");
+        }
+    }
+
+    private void cargarDatos() {
+    // Limpiar la tabla antes de cargar nuevos datos
+    tableModel = (DefaultTableModel) jTableTipos.getModel();
+    tableModel.setRowCount(0);
+
+    // Obtener los clientes del controlador
+    for (Cliente cliente : clienteController.obtenerCliente()) {
+        tableModel.addRow(new Object[]{
+            cliente.getCedula(),
+            cliente.getNombre(),
+            cliente.getEmail(),
+            cliente.getIngreso(),
+            cliente.getAlergias(),
+            cliente.getMedicamentos()
+        });
+    }
+    
+    }  
+    
+    
+    
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+         
+        int selectedRow = jTableTipos.getSelectedRow();
+        if (selectedRow != -1) {
+            editando = true;
+            ((DefaultTableModel) jTableTipos.getModel()).fireTableDataChanged();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un cliente para editar.");
+        }
+    
+    }//GEN-LAST:event_EditarActionPerformed
+
+    
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+
+        int filaSeleccionada = jTableTipos.getSelectedRow();
+    if (filaSeleccionada != -1) {
+        
+        String cedula = (String) jTableTipos.getValueAt(filaSeleccionada, 0);
+        String nombre = (String) jTableTipos.getValueAt(filaSeleccionada, 1);
+        String email = (String) jTableTipos.getValueAt(filaSeleccionada, 2);
+        String alergias = (String) jTableTipos.getValueAt(filaSeleccionada, 3);
+        String medicamentos = (String) jTableTipos.getValueAt(filaSeleccionada, 4);
+        String fechaIngreso = (String) jTableTipos.getValueAt(filaSeleccionada, 5);
+
+       
+        Cliente clienteEditado = new Cliente(cedula, nombre, email, fechaIngreso, alergias, medicamentos);
+        
+       
+        boolean exito = clienteController.actualizarCliente(cedula, nombre, email, fechaIngreso, alergias, medicamentos);
+        
+        
+        if (exito) {
+            ((DefaultTableModel) jTableTipos.getModel()).fireTableDataChanged(); 
+            JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el cliente.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un cliente para guardar los cambios.");
+    }
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+      
+        filaSeleccionada = jTableTipos.getSelectedRow();
+
+        if (filaSeleccionada >= 0) {
+            String cedula = (String) tableModel.getValueAt(filaSeleccionada, 0);
+            clienteController.borrarCliente(cedula);
+
+            cargarDatos(); // Actualizamos la tabla
+            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un cliente para eliminar.");
+        }
+
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+
+        tableModel.setRowCount(0); 
 
         
-    }//GEN-LAST:event_jTableTiposMouseClicked
-
+        for (Cliente cliente : clienteController.obtenerCliente()) {
+            tableModel.addRow(new Object[]{
+                cliente.getCedula(),
+                cliente.getNombre(),
+                cliente.getEmail(),
+                cliente.getIngreso(),
+                cliente.getAlergias(),
+                cliente.getMedicamentos(),
+                
+            });
+            
+       }    }//GEN-LAST:event_ActualizarActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -114,6 +288,10 @@ public class ListaClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Guardar;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTableTipos;
     // End of variables declaration//GEN-END:variables

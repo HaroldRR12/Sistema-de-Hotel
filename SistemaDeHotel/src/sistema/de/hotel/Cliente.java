@@ -11,38 +11,34 @@ import java.io.Serializable;
  *
  * @author Stevef
  */
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
+    private static final long serialVersionUID = 2643686995613128620L;
 
-
-      //Variables
-    private  int Cedula;
+    // Variables
+    private String cedula;
     private String nombre;
     private String email;
-    private String Ingreso;
+    private String ingreso;
     private String alergias;
     private String medicamentos;
-    
 
-    // Constructor 
-
-    public Cliente(int Cedula, String nombre, String email, String alergias, String medicamentos, String Ingreso) {
-        this.Cedula = Cedula;
+    // Constructor
+    public Cliente(String cedula, String nombre, String email, String ingreso, String alergias, String medicamentos) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.email = email;
         this.alergias = alergias;
         this.medicamentos = medicamentos;
-        this.Ingreso = Ingreso;
-        
-    }
-  
-    // Getters
-
-    public int getCedula() {
-        return Cedula;
+        this.ingreso = ingreso;
     }
 
-    public void setCedula(int Cedula) {
-        this.Cedula = Cedula;
+    // Getters y Setters
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -50,6 +46,9 @@ public class Cliente implements Serializable{
     }
 
     public void setNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
         this.nombre = nombre;
     }
 
@@ -58,15 +57,21 @@ public class Cliente implements Serializable{
     }
 
     public void setEmail(String email) {
+        if (email == null || !email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            throw new IllegalArgumentException("El email no es válido.");
+        }
         this.email = email;
     }
 
     public String getIngreso() {
-        return Ingreso;
+        return ingreso;
     }
 
-    public void setIngreso(String Ingreso) {
-        this.Ingreso = Ingreso;
+    public void setIngreso(String ingreso) {
+        if (ingreso == null || ingreso.trim().isEmpty()) {
+            throw new IllegalArgumentException("La fecha de ingreso no puede estar vacía.");
+        }
+        this.ingreso = ingreso;
     }
 
     public String getAlergias() {
@@ -74,7 +79,7 @@ public class Cliente implements Serializable{
     }
 
     public void setAlergias(String alergias) {
-        this.alergias = alergias;
+        this.alergias = alergias == null ? "" : alergias;
     }
 
     public String getMedicamentos() {
@@ -82,18 +87,14 @@ public class Cliente implements Serializable{
     }
 
     public void setMedicamentos(String medicamentos) {
-        this.medicamentos = medicamentos;
+        this.medicamentos = medicamentos == null ? "" : medicamentos;
     }
-    
-    
-  
 
     @Override
     public String toString() {
-        return "Cliente{" + "Cedula=" + Cedula + ", nombre=" + nombre + ", email=" + email + ", Ingreso=" + Ingreso + ", alergias=" + alergias + ", medicamentos=" + medicamentos + '}';
+        return String.format(
+            "Cliente [Cédula=%s, Nombre=%s, Email=%s, Ingreso=%s, Alergias=%s, Medicamentos=%s]",
+            cedula, nombre, email, ingreso, alergias, medicamentos
+        );
     }
-
-   
-    
-    
 }
