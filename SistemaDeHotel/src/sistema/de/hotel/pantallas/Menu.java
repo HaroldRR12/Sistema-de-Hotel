@@ -389,8 +389,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnclienteimgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclienteimgActionPerformed
         // TODO add your handling code here:
-         AdicionalesAgregar aag = new AdicionalesAgregar();
-            aag.setVisible(true);
+         ResgistroCliente rc = new ResgistroCliente();
+            rc.setVisible(true);
             dispose();
     }//GEN-LAST:event_btnclienteimgActionPerformed
 
